@@ -1,0 +1,3045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>BK Text  </title>
+    
+    <!-- ============================================================
+         PWA CONFIGURATION
+    ============================================================ -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="description" content="ဝတ္ထုနှင့် အနုပညာရပ်ဝန်း — ဖတ်ရှုရန်၊ နားဆင်ရန်">
+    <meta name="application-name" content="BK Text">
+    
+    <!-- iOS Specific PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BK Text">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png">
+    
+    <!-- Standard Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png">
+    <link rel="shortcut icon" href="https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png">
+    
+    <!-- MS Tile -->
+    <meta name="msapplication-TileColor" content="#0f172a">
+    <meta name="msapplication-TileImage" content="https://i.ibb.co/chVdDPpM/Picsart-26-10-15-00-07-21-040.jpg">
+    
+    <!-- Microsoft Edge/Windows PWA -->
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- ============================================================ -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Adcash Library -->
+    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+    
+    <style>
+        /* ========== THEMES SYSTEM ========== */
+        :root {
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --primary-color: #3b82f6;
+            --border-color: #e2e8f0;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --premium-gold: linear-gradient(135deg, #ffe066, #f59e0b, #eab308, #b45309);
+        }
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary-color: #3b82f6;
+            --border-color: #334155;
+            --accent-glow: rgba(59, 130, 246, 0.3);
+        }
+        [data-theme="ocean"] {
+            --bg-color: #0c1421; --surface-color: #142033; --text-color: #e0f2fe;
+            --text-muted: #7dd3fc; --primary-color: #0ea5e9; --border-color: #1e3a5f;
+            --accent-glow: rgba(14, 165, 233, 0.3);
+        }
+        [data-theme="sunset"] {
+            --bg-color: #1a0f1e; --surface-color: #2a1a30; --text-color: #fef3c7;
+            --text-muted: #fcd34d; --primary-color: #f59e0b; --border-color: #4c1d95;
+            --accent-glow: rgba(245, 158, 11, 0.3);
+        }
+        [data-theme="emerald"] {
+            --bg-color: #0a1f1a; --surface-color: #122e26; --text-color: #d1fae5;
+            --text-muted: #6ee7b7; --primary-color: #10b981; --border-color: #1e4d3f;
+            --accent-glow: rgba(16, 185, 129, 0.3);
+        }
+        [data-theme="royal"] {
+            --bg-color: #1a0b2e; --surface-color: #2d1b4e; --text-color: #ede9fe;
+            --text-muted: #c4b5fd; --primary-color: #8b5cf6; --border-color: #4c1d95;
+            --accent-glow: rgba(139, 92, 246, 0.3);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background-color 0.3s, border-color 0.3s; }
+        body { background-color: var(--bg-color); color: var(--text-color); overflow-x: hidden; }
+        .app-wrapper { max-width: 500px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; position: relative; background-color: var(--bg-color); box-shadow: 0 0 30px rgba(0,0,0,0.05); }
+        
+        /* ========== PWA iOS SAFE AREA SUPPORT ========== */
+        @supports (padding: env(safe-area-inset-top)) {
+            body {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        }
+        
+        /* ========== LOADING SCREEN ========== */
+        .loading-screen { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #0f172a 70%, #000 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            z-index: 99999; transition: opacity 0.6s ease;
+        }
+        .loading-screen.hide { opacity: 0; pointer-events: none; }
+        .bk-loader-wrap { position: relative; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; }
+        .bk-ring { position: absolute; border-radius: 50%; border: 2px solid transparent; }
+        .bk-ring.r1 { width: 150px; height: 150px; border-top-color: #6366f1; border-right-color: #8b5cf6; animation: bkSpin 2s linear infinite; }
+        .bk-ring.r2 { width: 120px; height: 120px; border-bottom-color: #06b6d4; border-left-color: #3b82f6; animation: bkSpin 1.5s linear infinite reverse; }
+        .bk-ring.r3 { width: 90px; height: 90px; border-top-color: #ec4899; border-right-color: #f59e0b; animation: bkSpin 1s linear infinite; }
+        .bk-core {
+            width: 70px; height: 70px; background: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b);
+            border-radius: 20px; display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 22px; color: #fff; letter-spacing: -1px;
+            box-shadow: 0 0 30px rgba(99,102,241,0.6), 0 0 60px rgba(236,72,153,0.4);
+            animation: bkPulse 1.5s ease-in-out infinite;
+        }
+        @keyframes bkSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes bkPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(99,102,241,0.6), 0 0 60px rgba(236,72,153,0.4); }
+            50% { transform: scale(1.1); box-shadow: 0 0 50px rgba(99,102,241,0.9), 0 0 90px rgba(236,72,153,0.7); }
+        }
+        .loading-brand {
+            margin-top: 30px; font-size: 34px; font-weight: 900; letter-spacing: 2px;
+            background: linear-gradient(90deg, #6366f1, #ec4899, #f59e0b, #6366f1);
+            background-size: 300% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: bkTextFlow 3s linear infinite;
+        }
+        @keyframes bkTextFlow { 0% { background-position: 0% 50%; } 100% { background-position: 300% 50%; } }
+        .loading-sub { margin-top: 10px; color: #94a3b8; font-size: 12px; letter-spacing: 4px; font-weight: 600; animation: bkFade 2s ease-in-out infinite; }
+        @keyframes bkFade { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+        .loading-dots { display: flex; gap: 6px; margin-top: 15px; }
+        .loading-dots span { width: 8px; height: 8px; border-radius: 50%; background: #6366f1; animation: bkDot 1.4s infinite ease-in-out both; }
+        .loading-dots span:nth-child(2) { animation-delay: 0.2s; background: #ec4899; }
+        .loading-dots span:nth-child(3) { animation-delay: 0.4s; background: #f59e0b; }
+        @keyframes bkDot { 0%,80%,100% { transform: scale(0.5); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
+
+        /* ========== iOS INSTALL TIP BANNER ========== */
+        #ios-install-tip {
+            display: none;
+            position: fixed; bottom: 80px; left: 15px; right: 15px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white; padding: 15px; border-radius: 16px;
+            z-index: 9998; align-items: center; gap: 12px;
+            box-shadow: 0 8px 25px rgba(59,130,246,0.4);
+            animation: iosTipSlide 0.4s ease;
+        }
+        @keyframes iosTipSlide {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* ========== MYANMAR BAN MODAL ========== */
+        .myanmar-ban-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            z-index: 999999; align-items: center; justify-content: center; padding: 30px;
+        }
+        .myanmar-ban-modal.active { display: flex; }
+        .myanmar-ban-box {
+            background: var(--surface-color); border-radius: 24px; padding: 30px 25px;
+            max-width: 400px; width: 100%; text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+        }
+        .myanmar-ban-icon { font-size: 60px; margin-bottom: 15px; }
+        .myanmar-ban-title { font-size: 22px; font-weight: 800; margin-bottom: 12px; color: #ef4444; }
+        .myanmar-ban-desc { font-size: 14px; color: var(--text-color); line-height: 1.8; margin-bottom: 20px; text-align: left; }
+        .myanmar-ban-desc b { color: var(--primary-color); }
+        .myanmar-ban-btn {
+            width: 100%; padding: 14px; background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: #fff; border: none; border-radius: 12px; font-weight: 700;
+            font-size: 15px; cursor: pointer; margin-bottom: 10px;
+        }
+        .myanmar-ban-note {
+            font-size: 12px; color: var(--text-muted); margin-top: 10px;
+            padding: 10px; background: var(--bg-color); border-radius: 10px;
+        }
+
+        /* Auth Screen */
+        .auth-view { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; min-height: 100vh; width: 100%; transition: all 0.4s ease; }
+        .auth-card { background: var(--surface-color); width: 100%; border-radius: 24px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
+        .auth-tabs { display: flex; margin-bottom: 25px; background: var(--bg-color); padding: 5px; border-radius: 12px; }
+        .auth-tab { flex: 1; padding: 12px; text-align: center; cursor: pointer; border-radius: 10px; font-weight: 600; color: var(--text-muted); }
+        .auth-tab.active { background: var(--surface-color); color: var(--primary-color); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .input-group { position: relative; margin-bottom: 20px; }
+        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .auth-input { width: 100%; padding: 14px 15px 14px 45px; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 12px; color: var(--text-color); font-size: 15px; outline: none; }
+        .auth-input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px var(--accent-glow); }
+        .auth-btn { width: 100%; padding: 14px; background: var(--primary-color); border: none; border-radius: 12px; color: white; font-weight: 600; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(59,130,246,0.3); }
+        
+        /* Social Buttons */
+        .social-btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .social-btn { padding: 14px; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; color: var(--text-color); font-weight: 600; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.15s; }
+        .social-btn:active { transform: scale(0.97); }
+        .social-btn:hover { background: var(--bg-color); }
+        .social-btn.google { color: #1a73e8; }
+        .social-btn.facebook { color: #1877f2; }
+
+        /* Header */
+        .app-header { position: sticky; top: 0; background: var(--surface-color); padding: 15px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .logo-text { font-size: 22px; font-weight: 800; background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Slider */
+        .ads-container { padding: 15px 20px 5px 20px; display: none; position: relative; }
+        .ads-wrapper { width: 100%; overflow: hidden; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); background: var(--surface-color); position: relative; aspect-ratio: 16/9; }
+        .ads-track { display: flex; width: 100%; height: 100%; overflow-x: scroll; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+        .ads-track::-webkit-scrollbar { display: none; }
+        .ads-slide { flex: 0 0 100%; width: 100%; height: 100%; scroll-snap-align: start; }
+        .ads-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .ads-indicators { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 10; }
+        .indicator-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: all 0.3s; }
+        .indicator-dot.active { width: 20px; border-radius: 4px; background: #fff; }
+
+        /* Quotes */
+        .quote-container { padding: 15px 20px 5px 20px; display: none; }
+        .quote-box { background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08)); border-left: 4px solid var(--primary-color); border-radius: 0 16px 16px 0; padding: 15px 20px; position: relative; }
+        .quote-text { font-size: 14.5px; font-weight: 500; line-height: 1.6; font-style: italic; margin-bottom: 5px; }
+        .quote-author { font-size: 12px; font-weight: 600; color: var(--primary-color); text-align: right; }
+
+        /* Search */
+        .search-container { padding: 15px 20px; }
+        .search-box { position: relative; display: flex; align-items: center; }
+        .search-box i { position: absolute; left: 15px; color: var(--text-muted); }
+        .search-input { width: 100%; padding: 12px 15px 12px 42px; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; color: var(--text-color); outline: none; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+
+        /* Categories */
+        .category-bar { display: flex; gap: 10px; overflow-x: auto; padding: 5px 20px 15px 20px; scrollbar-width: none; }
+        .category-bar::-webkit-scrollbar { display: none; }
+        .category-btn { flex: 0 0 auto; padding: 8px 18px; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 20px; color: var(--text-muted); font-size: 14px; font-weight: 600; cursor: pointer; }
+        .category-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); box-shadow: 0 4px 10px rgba(59,130,246,0.25); }
+        .category-btn.premium-glow-btn {
+            background: var(--premium-gold); color: #ffffff !important; border: none;
+            position: relative; z-index: 1;
+            box-shadow: 0 0 12px rgba(234, 179, 8, 0.4);
+            animation: premiumGlowAnim 2s infinite alternate;
+            font-weight: 700;
+        }
+        @keyframes premiumGlowAnim {
+            0% { box-shadow: 0 0 8px rgba(234, 179, 8, 0.4), inset 0 0 5px rgba(255,255,255,0.2); transform: scale(1); }
+            100% { box-shadow: 0 0 18px rgba(245, 158, 11, 0.8), inset 0 0 10px rgba(255,255,255,0.4); transform: scale(1.03); }
+        }
+
+        /* Feed */
+        .main-feed { padding: 0 20px 100px 20px; display: flex; flex-direction: column; gap: 20px; }
+        .story-card { background: var(--surface-color); border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.02); cursor: pointer; position: relative; }
+        .story-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: none; }
+        .story-card div { padding: 15px 15px 5px 15px; }
+        .story-tag { font-size: 11px; font-weight: 700; color: var(--primary-color); text-transform: uppercase; background: var(--accent-glow); padding: 3px 8px; border-radius: 6px; }
+        .premium-badge { font-size: 11px; font-weight: 700; color: #b45309; background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 3px 8px; border-radius: 6px; margin-left: 5px; }
+        .audio-badge { font-size: 11px; font-weight: 700; color: #0284c7; background: rgba(14, 165, 233, 0.15); padding: 3px 8px; border-radius: 6px; margin-left: 5px; }
+        .audio-badge.locked { color: #b45309; background: linear-gradient(135deg, #fef3c7, #fde68a); }
+        .story-title { font-size: 17px; font-weight: 700; margin-top: 8px; line-height: 1.4; }
+        .story-snippet { font-size: 13.5px; color: var(--text-muted); margin-top: 6px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .story-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding: 10px 15px !important; background: rgba(0,0,0,0.01); font-size: 12px; color: var(--text-muted); }
+        .bookmark-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px; }
+        .bookmark-btn.active { color: #ef4444; }
+
+        /* Grid View */
+        .main-feed.grid-view { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 15px 100px 15px; }
+        .grid-view .story-card { border-radius: 12px; box-shadow: none; display: flex; flex-direction: column; height: 100%; }
+        .grid-view .story-card div:first-child { padding: 8px; flex-grow: 1; display: flex; flex-direction: column; }
+        .grid-view .story-img { display: block; aspect-ratio: 3/4; border-radius: 8px; object-fit: cover; width: 100%; }
+        .grid-view .story-tag, .grid-view .premium-badge, .grid-view .audio-badge { display: none; }
+        .grid-view .story-title { font-size: 12px; font-weight: 700; margin-top: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3; text-align: center; }
+        .grid-view .story-snippet { display: none; }
+        .grid-view .story-footer { padding: 6px 8px !important; font-size: 10px; border-top: none; background: transparent; }
+        .grid-view .story-footer span { display: none; }
+        .grid-view .bookmark-btn { margin-left: auto; font-size: 13px; }
+
+        /* Profile */
+        .profile-view { padding: 20px; display: none; padding-bottom: 100px; }
+        .coin-hero {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24, #f59e0b);
+            border-radius: 20px; padding: 20px; margin-bottom: 15px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+            position: relative; overflow: hidden;
+        }
+        .coin-hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.3), transparent 70%); }
+        .coin-hero-left { position: relative; z-index: 1; }
+        .coin-hero-label { font-size: 12px; font-weight: 700; color: #78350f; letter-spacing: 1px; text-transform: uppercase; }
+        .coin-hero-value { font-size: 32px; font-weight: 900; color: #fff; margin-top: 4px; text-shadow: 0 2px 6px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 10px; }
+        .coin-hero-value i { font-size: 28px; }
+        .coin-hero-icon { font-size: 60px; color: rgba(255,255,255,0.4); position: relative; z-index: 1; }
+        .buy-premium-coin-btn {
+            margin-top: 10px; background: rgba(255,255,255,0.95); color: #b45309;
+            border: none; padding: 8px 16px; border-radius: 10px; font-weight: 800; font-size: 12px;
+            cursor: pointer; display: flex; align-items: center; gap: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        
+        /* ========== PREMIUM PROFILE CARD — ULTRA PREMIUM DESIGN ========== */
+        .profile-card { 
+            background: var(--surface-color); 
+            border-radius: 20px; 
+            padding: 25px; 
+            text-align: center; 
+            border: 1px solid var(--border-color); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02); 
+            margin-bottom: 20px; 
+            position: relative; 
+            overflow: hidden; 
+            transition: all 0.4s ease;
+        }
+        .profile-card.premium-active {
+            background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 50%, #1e1b4b 100%);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.4), 0 0 80px rgba(139, 92, 246, 0.3);
+            animation: premiumCardPulse 3s ease-in-out infinite;
+        }
+        .profile-card.premium-active::before {
+            content: '';
+            position: absolute;
+            top: -3px; left: -3px; right: -3px; bottom: -3px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #ec4899, #8b5cf6, #3b82f6, #fbbf24);
+            background-size: 400% 400%;
+            border-radius: 22px;
+            z-index: -1;
+            animation: premiumBorderFlow 4s linear infinite;
+        }
+        @keyframes premiumCardPulse {
+            0%, 100% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.4), 0 0 80px rgba(139, 92, 246, 0.3); }
+            50% { box-shadow: 0 0 60px rgba(245, 158, 11, 0.7), 0 0 120px rgba(139, 92, 246, 0.5); }
+        }
+        @keyframes premiumBorderFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .profile-card.premium-active .profile-name { 
+            color: #fef3c7; 
+            text-shadow: 0 0 20px rgba(251, 191, 36, 0.7);
+        }
+        .profile-card.premium-active .profile-email {
+            color: #c4b5fd;
+        }
+        .profile-card.premium-active .avatar-box {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border: 3px solid #fef3c7;
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.8);
+            animation: avatarGlow 2s ease-in-out infinite;
+        }
+        @keyframes avatarGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.8); }
+            50% { box-shadow: 0 0 50px rgba(251, 191, 36, 1), 0 0 80px rgba(236,72,153,0.6); }
+        }
+        
+        /* Crown Badge floating */
+        .premium-crown-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.9);
+            animation: crownFloat 2s ease-in-out infinite;
+            z-index: 5;
+        }
+        .profile-card.premium-active .premium-crown-badge {
+            display: flex;
+        }
+        @keyframes crownFloat {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+        }
+        
+        /* Premium sparkle overlay */
+        .premium-sparkles {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            display: none;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        .profile-card.premium-active .premium-sparkles {
+            display: block;
+        }
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fbbf24;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fbbf24, 0 0 20px #fbbf24;
+            animation: sparkleAnim 3s linear infinite;
+        }
+        @keyframes sparkleAnim {
+            0% { transform: translateY(100%) scale(0); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-100%) scale(1); opacity: 0; }
+        }
+        
+        /* Premium shine sweep */
+        .profile-card.premium-active::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: shineSweep 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes shineSweep {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        .avatar-container { position: relative; width: 90px; height: 90px; margin: 0 auto 15px auto; }
+        .avatar-box { width: 90px; height: 90px; border-radius: 50%; background: var(--bg-color); border: 3px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--text-muted); overflow: hidden; transition: all 0.4s ease; }
+        .avatar-box img { width: 100%; height: 100%; object-fit: cover; }
+        .avatar-edit-icon { position: absolute; bottom: 0; right: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--primary-color); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; cursor: pointer; border: 2px solid var(--surface-color); }
+        .profile-name-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 5px; position: relative; z-index: 2; }
+        .profile-name { font-size: 20px; font-weight: 700; transition: all 0.4s ease; }
+        .blue-mask { color: #3b82f6; font-size: 16px; }
+        .profile-email { font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px; position: relative; z-index: 2; transition: all 0.4s ease; }
+        .role-badge-container { display: inline-block; margin-top: 5px; position: relative; z-index: 2; }
+        .role-badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .role-reader { background: var(--bg-color); color: var(--text-muted); }
+        .role-premium { 
+            background: linear-gradient(135deg, #fef3c7, #fde68a, #fbbf24); 
+            color: #78350f; 
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+            animation: roleBadgePulse 2s ease-in-out infinite;
+        }
+        @keyframes roleBadgePulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(251, 191, 36, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(251, 191, 36, 0.9); }
+        }
+        .role-artist { background: #fce7f3; color: #db2777; }
+        
+        .monetize-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color); position: relative; z-index: 2; }
+        .profile-card.premium-active .monetize-actions { border-top-color: rgba(251, 191, 36, 0.3); }
+        .monetize-btn { padding: 12px; border: none; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; color: white; }
+        .btn-premium { background: var(--premium-gold); box-shadow: 0 4px 10px rgba(245,158,11,0.2); }
+        .btn-artist { background: linear-gradient(135deg, #ec4899, #a855f7); box-shadow: 0 4px 10px rgba(236,72,153,0.2); }
+
+        .settings-container { background: var(--surface-color); border-radius: 16px; border: 1px solid var(--border-color); padding: 5px; margin-bottom: 20px; }
+        .settings-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid var(--border-color); cursor: pointer; }
+        .settings-item:last-child { border-bottom: none; }
+        .settings-left { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 15px; }
+        .settings-left i { width: 20px; color: var(--text-muted); text-align: center; }
+        .settings-right { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
+
+        /* Switch */
+        .switch { position: relative; display: inline-block; width: 46px; height: 24px; margin-left: 10px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .3s; border-radius: 24px; }
+        [data-theme="dark"] .slider { background-color: #475569; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        input:checked + .slider { background-color: var(--primary-color); }
+        input:checked + .slider:before { transform: translateX(22px); }
+        .music-select { padding: 6px 10px; border-radius: 8px; background: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-color); font-weight: 600; font-size: 13px; outline: none; }
+        .music-select option.premium-track-opt { background-color: #1e1b4b !important; color: #fbbf24 !important; font-weight: bold; }
+        .music-select.premium-active-select {
+            border: 2px solid #eab308 !important;
+            background: linear-gradient(135deg, #fef3c7, #fffbf0);
+            color: #b45309 !important;
+            box-shadow: 0 0 10px rgba(234,179,8,0.5);
+            animation: goldPulse 1.5s infinite alternate;
+        }
+        [data-theme="dark"] .music-select.premium-active-select { background: linear-gradient(135deg, #1e1b4b, #2e1065); color: #fde68a !important; }
+        @keyframes goldPulse { 0% { box-shadow: 0 0 5px rgba(234,179,8,0.4); } 100% { box-shadow: 0 0 12px rgba(234,179,8,0.8); } }
+
+        /* Theme Grid */
+        .theme-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 10px 15px 15px 15px; }
+        .theme-swatch { aspect-ratio: 1; border-radius: 12px; cursor: pointer; position: relative; overflow: hidden; border: 3px solid transparent; transition: transform 0.2s; }
+        .theme-swatch:active { transform: scale(0.95); }
+        .theme-swatch.active { border-color: var(--primary-color); box-shadow: 0 0 0 2px var(--accent-glow); }
+        .theme-swatch.premium-locked::after {
+            content: '👑'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 20px; background: rgba(0,0,0,0.5); width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .theme-swatch.swatch-light { background: linear-gradient(135deg, #f8fafc, #3b82f6); }
+        .theme-swatch.swatch-ocean { background: linear-gradient(135deg, #0c1421, #0ea5e9); }
+        .theme-swatch.swatch-sunset { background: linear-gradient(135deg, #1a0f1e, #f59e0b); }
+        .theme-swatch.swatch-emerald { background: linear-gradient(135deg, #0a1f1a, #10b981); }
+        .theme-swatch.swatch-royal { background: linear-gradient(135deg, #1a0b2e, #8b5cf6); }
+        .theme-swatch-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.6); color: #fff; font-size: 9px; font-weight: 700; text-align: center; padding: 3px; }
+
+        .logout-row-btn { width: 100%; padding: 15px; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 16px; color: #ef4444; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.01); }
+
+        /* Audio Player */
+        .post-audio-player {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid var(--primary-color); border-radius: 16px; padding: 15px;
+            margin: 15px 0 20px 0; display: flex; flex-direction: column; gap: 10px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.08);
+        }
+        .post-audio-player.locked { background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(234,179,8,0.1)); border-color: #f59e0b; }
+        .audio-player-header { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 700; color: var(--primary-color); }
+        .post-audio-player.locked .audio-player-header { color: #b45309; }
+        .audio-player-controls { display: flex; align-items: center; gap: 12px; }
+        .audio-play-btn {
+            width: 42px; height: 42px; border-radius: 50%; background: var(--primary-color); color: white;
+            border: none; display: flex; align-items: center; justify-content: center;
+            font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(59,130,246,0.3);
+            flex-shrink: 0; transition: transform 0.2s ease;
+        }
+        .audio-play-btn:active { transform: scale(0.95); }
+        .audio-play-btn.locked { background: linear-gradient(135deg, #f59e0b, #eab308); }
+        .audio-progress-container { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+        .audio-slider {
+            width: 100%; height: 5px; -webkit-appearance: none; appearance: none;
+            background: var(--border-color); border-radius: 5px; outline: none; cursor: pointer;
+        }
+        .audio-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 13px; height: 13px;
+            border-radius: 50%; background: var(--primary-color); cursor: pointer;
+            box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+        }
+        .audio-time-row { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); font-weight: 600; }
+        .audio-speed-btn { background: var(--surface-color); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 8px; padding: 4px 8px; font-size: 11px; font-weight: 700; cursor: pointer; }
+
+        /* Reader */
+        .reader-view { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; height: 100%; background: var(--surface-color); z-index: 500; display: none; flex-direction: column; animation: readerSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes readerSlide { from { transform: translate(-50%, 100%); } to { transform: translate(-50%, 0); } }
+        .reader-header { padding: 15px 20px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 15px; background: var(--surface-color); position: sticky; top: 0; z-index: 10; }
+        .back-btn { background: none; border: none; color: var(--text-color); font-size: 18px; cursor: pointer; }
+        .reader-content { flex: 1; overflow-y: auto; padding: 20px; padding-bottom: 60px; line-height: 1.8; font-size: 16px; -webkit-overflow-scrolling: touch; }
+        .reader-content img { width: 100%; border-radius: 12px; margin-bottom: 15px; object-fit: cover; display: block; }
+        .reader-content h2 { font-size: 22px; font-weight: 800; margin-bottom: 5px; line-height: 1.4; }
+        .reader-content h4 { color: var(--text-muted); font-weight: 500; margin-bottom: 10px; font-size: 14px; }
+        .reader-content p { margin-top: 15px; text-align: justify; white-space: pre-line; color: var(--text-color); }
+        .chapter-list-container { background: var(--bg-color); border-radius: 14px; padding: 15px; margin-top: 20px; border: 1px solid var(--border-color); }
+        .chapter-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 10px; border-bottom: 1px solid var(--border-color); cursor: pointer; font-weight: 600; font-size: 14.5px; }
+        .chapter-item:last-child { border-bottom: none; }
+
+        /* Reader Content Ad Slot — BANNER 320x50 */
+        .reader-inline-ad {
+            margin: 25px 0;
+            padding: 12px 0;
+            border-top: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-color);
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .reader-inline-ad-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+        
+        /* Bottom Nav */
+       .bottom-nav {
+    position: fixed !important; bottom: 0 !important; left: 0 !important; right: 0 !important;
+    width: 100% !important; z-index: 9999 !important; display: flex;
+    justify-content: space-around; align-items: center;
+    background-color: #121a29; padding: 10px 0;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+}
+body { padding-bottom: 70px !important; }
+        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; background: none; border: none; color: var(--text-muted); cursor: pointer; gap: 4px; }
+        .nav-item i { font-size: 18px; }
+        .nav-item span { font-size: 11px; font-weight: 600; }
+        .nav-item.active { color: var(--primary-color); }
+
+        /* Modal */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
+        .modal-box { background: var(--surface-color); width: 100%; max-width: 420px; max-height: 85vh; border-radius: 24px; padding: 25px 20px; text-align: center; border: 1px solid var(--border-color); box-shadow: 0 20px 40px rgba(0,0,0,0.15); display: flex; flex-direction: column; animation: modalZoom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes modalZoom { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-scroll-area { flex: 1; overflow-y: auto; padding: 5px 10px; margin-bottom: 15px; }
+        .modal-icon { font-size: 40px; margin-bottom: 10px; }
+        .modal-title { font-size: 19px; font-weight: 800; margin-bottom: 12px; color: var(--text-color); }
+        .modal-desc { font-size: 13.5px; color: var(--text-color); line-height: 1.7; text-align: justify; white-space: pre-line; word-break: break-word; }
+        .modal-action-btn { width: 100%; padding: 14px; border: none; border-radius: 12px; color: white; font-weight: 700; font-size: 14.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; flex-shrink: 0; }
+        .modal-close-btn { background: none; border: none; color: var(--text-muted); font-weight: 600; font-size: 13.5px; cursor: pointer; padding: 5px; flex-shrink: 0; }
+
+        .scroll-loader { width: 100%; text-align: center; padding: 15px 0; font-weight: 600; color: var(--text-muted); font-size: 13px; display: none; }
+
+        /* ========== REPORT TEAM CHAT ========== */
+        .chat-view { 
+            position: fixed; top: 0; left: 50%; transform: translateX(-50%); 
+            width: 100%; max-width: 500px; 
+            height: 100vh; height: 100dvh;
+            background: var(--bg-color); z-index: 99999; display: none; 
+            flex-direction: column; padding-bottom: 70px;
+        }
+        .chat-view.active { display: flex; }
+        .chat-header { 
+            padding: 15px 20px; background: var(--surface-color); 
+            border-bottom: 1px solid var(--border-color); 
+            display: flex; align-items: center; gap: 12px; 
+            position: sticky; top: 0; z-index: 10; flex-shrink: 0;
+        }
+        .chat-avatar { 
+            width: 40px; height: 40px; border-radius: 50%; 
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6); 
+            display: flex; align-items: center; justify-content: center; 
+            color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+        }
+        .chat-info { flex: 1; }
+        .chat-name { font-size: 15px; font-weight: 700; }
+        .chat-status { font-size: 11px; color: #10b981; font-weight: 600; }
+        .chat-messages { 
+            flex: 1; overflow-y: auto; padding: 20px; 
+            display: flex; flex-direction: column; gap: 10px; min-height: 0;
+            -webkit-overflow-scrolling: touch;
+        }
+        .chat-bubble { max-width: 75%; padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.5; word-wrap: break-word; }
+        .chat-bubble.user { align-self: flex-end; background: var(--primary-color); color: #fff; border-bottom-right-radius: 4px; }
+        .chat-bubble.admin { align-self: flex-start; background: var(--surface-color); color: var(--text-color); border: 1px solid var(--border-color); border-bottom-left-radius: 4px; }
+        .chat-bubble-time { font-size: 10px; opacity: 0.7; margin-top: 4px; display: block; }
+        .chat-input-row { 
+            padding: 12px 15px; padding-bottom: calc(12px + env(safe-area-inset-bottom));
+            background: var(--surface-color); border-top: 1px solid var(--border-color); 
+            display: flex; gap: 10px; align-items: center;
+            flex-shrink: 0; z-index: 10000; position: relative;
+        }
+        .chat-input { 
+            flex: 1; padding: 12px 15px; background: var(--bg-color); 
+            border: 1px solid var(--border-color); border-radius: 20px; 
+            color: var(--text-color); outline: none; font-size: 16px; min-width: 0;
+        }
+        .chat-send-btn { 
+            width: 44px; height: 44px; border-radius: 50%; 
+            background: var(--primary-color); color: #fff; border: none; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 16px; cursor: pointer; flex-shrink: 0;
+        }
+        .chat-send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* ========== READ UPDATE ========== */
+        .updates-view { position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; height: 100vh; height: 100dvh; background: var(--bg-color); z-index: 99999; display: none; flex-direction: column; padding-bottom: 70px; }
+        .updates-view.active { display: flex; }
+        .updates-list { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; -webkit-overflow-scrolling: touch; }
+        .update-card { background: var(--surface-color); border-radius: 16px; padding: 18px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        .update-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 10px; }
+        .update-card-title { font-size: 15px; font-weight: 700; color: var(--primary-color); flex: 1; }
+        .update-card-date { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
+        .update-card-content { font-size: 13.5px; line-height: 1.7; color: var(--text-color); white-space: pre-line; }
+
+        /* ========== DOWNLOAD VIEW ========== */
+        .download-view { padding: 20px; display: none; padding-bottom: 100px; }
+        .download-header { font-size: 18px; font-weight: 800; margin-bottom: 15px; }
+        .download-item { background: var(--surface-color); border-radius: 14px; padding: 15px; margin-bottom: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; gap: 12px; }
+        .download-item-icon { width: 45px; height: 45px; border-radius: 12px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .download-item-info { flex: 1; min-width: 0; }
+        .download-item-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .download-item-meta { font-size: 11px; color: var(--text-muted); }
+        .download-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
+        .download-action-btn { width: 32px; height: 32px; border-radius: 8px; border: none; background: var(--bg-color); color: var(--text-color); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+        .download-action-btn.danger { color: #ef4444; }
+        .download-empty { text-align: center; padding: 40px 20px; color: var(--text-muted); }
+
+        /* ========== COIN VIEW ========== */
+        .coin-view { padding: 20px; padding-bottom: 100px; }
+        .coin-header-card {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24, #f59e0b);
+            border-radius: 24px; padding: 24px 20px; text-align: center;
+            color: #fff; margin-bottom: 20px; position: relative; overflow: hidden;
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.35);
+        }
+        .coin-header-card::before {
+            content: ''; position: absolute; top: -50%; right: -30%; width: 250px; height: 250px;
+            background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%);
+        }
+        .coin-header-card::after {
+            content: ''; position: absolute; bottom: -60%; left: -30%; width: 250px; height: 250px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+        }
+        .coin-big-icon { font-size: 48px; margin-bottom: 8px; text-shadow: 0 4px 12px rgba(0,0,0,0.25); position: relative; z-index: 1; animation: coinBounce 2s ease-in-out infinite; }
+        @keyframes coinBounce { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-6px) rotate(5deg); } }
+        .coin-big-value { font-size: 44px; font-weight: 900; position: relative; z-index: 1; letter-spacing: -1px; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+        .coin-big-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; opacity: 0.95; position: relative; z-index: 1; margin-top: 4px; }
+
+        .coin-missions-title { font-size: 15px; font-weight: 800; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; color: var(--text-color); }
+        .coin-missions-title i { color: var(--primary-color); }
+
+        .coin-mission-card {
+            background: var(--surface-color); border-radius: 16px; padding: 14px 12px;
+            display: grid; grid-template-columns: 48px 1fr auto;
+            align-items: center; gap: 12px; margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .coin-mission-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.06); }
+        .coin-mission-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; flex-shrink: 0; }
+        .mission-daily { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 10px rgba(16,185,129,0.25); }
+        .mission-10min { background: linear-gradient(135deg, #3b82f6, #2563eb); box-shadow: 0 4px 10px rgba(59,130,246,0.25); }
+        .mission-30min { background: linear-gradient(135deg, #8b5cf6, #6d28d9); box-shadow: 0 4px 10px rgba(139,92,246,0.25); }
+        .mission-1hr { background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 4px 10px rgba(245,158,11,0.25); }
+        
+        .coin-mission-info { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+        .coin-mission-title { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-color); }
+        .coin-mission-desc { font-size: 11.5px; color: var(--text-muted); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .coin-mission-reward { font-size: 11px; font-weight: 800; color: #b45309; background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 3px 8px; border-radius: 6px; display: inline-block; align-self: flex-start; margin-top: 2px; }
+        .coin-progress-bar { width: 100%; height: 4px; background: var(--border-color); border-radius: 4px; overflow: hidden; margin-top: 4px; }
+        .coin-progress-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #8b5cf6); border-radius: 4px; transition: width 0.3s; }
+        
+        .coin-claim-btn {
+            padding: 9px 14px; border-radius: 10px; border: none;
+            font-weight: 800; font-size: 11.5px; cursor: pointer;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #fff; box-shadow: 0 4px 10px rgba(245,158,11,0.3);
+            white-space: nowrap; min-width: 68px; letter-spacing: 0.3px;
+            transition: transform 0.15s;
+        }
+        .coin-claim-btn:active:not(:disabled) { transform: scale(0.95); }
+        .coin-claim-btn:disabled { background: var(--border-color); color: var(--text-muted); box-shadow: none; cursor: not-allowed; opacity: 0.7; }
+        .coin-claim-btn.claimed { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 4px 10px rgba(16,185,129,0.3); }
+
+        .coin-redeem-card {
+            background: linear-gradient(135deg, #1e1b4b, #2d1b4e);
+            border-radius: 20px; padding: 22px 20px; color: #fff; margin-top: 20px;
+            text-align: center; border: 1px solid #4c1d95;
+            position: relative; overflow: hidden;
+        }
+        .coin-redeem-card::before { content: ''; position: absolute; top: -50%; right: -30%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(139,92,246,0.4), transparent 70%); }
+        .coin-redeem-card h3 { font-size: 16px; font-weight: 800; margin-bottom: 8px; position: relative; z-index: 1; }
+        .coin-redeem-card p { font-size: 12.5px; color: #c4b5fd; margin-bottom: 15px; line-height: 1.6; position: relative; z-index: 1; }
+        .coin-redeem-btn {
+            width: 100%; padding: 14px; border: none; border-radius: 12px;
+            background: var(--premium-gold); color: #fff;
+            font-weight: 800; font-size: 14px; cursor: pointer;
+            box-shadow: 0 6px 18px rgba(245,158,11,0.4);
+            position: relative; z-index: 1; transition: transform 0.15s;
+        }
+        .coin-redeem-btn:active:not(:disabled) { transform: scale(0.98); }
+        .coin-redeem-btn:disabled { background: #475569; box-shadow: none; cursor: not-allowed; color: #94a3b8; }
+
+        @media (max-width: 380px) {
+            .coin-mission-card { grid-template-columns: 44px 1fr auto; gap: 10px; padding: 12px 10px; }
+            .coin-mission-icon { width: 44px; height: 44px; font-size: 18px; }
+            .coin-mission-title { font-size: 13px; }
+            .coin-mission-desc { font-size: 11px; }
+            .coin-claim-btn { padding: 8px 10px; font-size: 11px; min-width: 60px; }
+            .coin-big-value { font-size: 38px; }
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+<!-- ============================================================
+     iOS INSTALL TIP BANNER
+============================================================ -->
+<div id="ios-install-tip">
+    <div style="font-size: 28px;">📱</div>
+    <div style="flex: 1;">
+        <div style="font-weight: 700; font-size: 14px; margin-bottom: 4px;">App အဖြစ် Install လုပ်ပါ</div>
+        <div style="font-size: 11.5px; opacity: 0.9;">Safari ရဲ့ Share (⬆️) → "Add to Home Screen"</div>
+    </div>
+    <button onclick="document.getElementById('ios-install-tip').style.display='none'; localStorage.setItem('bk_ios_tip_shown', 'true');" style="background: rgba(255,255,255,0.2); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 16px;">×</button>
+</div>
+
+<!-- ============================================================
+     MYANMAR BAN MODAL
+============================================================ -->
+<div class="myanmar-ban-modal" id="myanmar-ban-modal">
+    <div class="myanmar-ban-box">
+        <div class="myanmar-ban-icon">🚫</div>
+        <div class="myanmar-ban-title">Myanmar မှ ဝင်ရောက်၍ မရပါ</div>
+        <div class="myanmar-ban-desc">
+            ဤ App ကို <b>Myanmar နိုင်ငံမှ ဝင်ရောက်ခွင့် မပြုပါ</b>။<br><br>
+            ကျေးဇူးပြု၍ <b>VPN</b> တစ်ခုခု အသုံးပြုပြီး အခြားနိုင်ငံမှ ပြန်လည် ဝင်ရောက်ပါ။
+        </div>
+        <button class="myanmar-ban-btn" onclick="location.reload()">
+            <i class="fas fa-redo"></i> ပြန်စစ်ဆေးမည်
+        </button>
+        <div class="myanmar-ban-note">
+            <i class="fas fa-shield-alt"></i> VPN ဖွင့်ပြီးမှ "ပြန်စစ်ဆေးမည်" ကို နှိပ်ပါ။
+        </div>
+    </div>
+</div>
+
+<!-- Update Modal -->
+<div id="update-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center; padding: 20px;">
+    <div style="background: #1e293b; color: #fff; border-radius: 12px; padding: 25px; max-width: 380px; width: 100%; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+        <div style="font-size: 3rem; color: #6366f1; margin-bottom: 10px;">🚀</div>
+        <h2 style="margin-bottom: 8px; font-size: 1.3rem;">Update အသစ်ရရှိနိုင်ပါပြီ!</h2>
+        <p id="update-modal-version" style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 15px;"></p>
+        
+        <div style="text-align: left; background: rgba(0,0,0,0.25); padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 0.85rem; color: #cbd5e1; white-space: pre-line; max-height: 150px; overflow-y: auto;" id="update-modal-remark"></div>
+
+        <button id="update-download-btn" style="width: 100%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.95rem;">
+            <i class="fas fa-download"></i> အခုပဲ Update ရယူမည်
+        </button>
+        <button id="update-skip-btn" onclick="closeUpdateModal()" style="width: 100%; background: transparent; color: #94a3b8; border: none; padding: 10px; margin-top: 8px; cursor: pointer; display: none; font-size: 0.85rem;">
+            နောက်မှလုပ်မည်
+        </button>
+    </div>
+</div>
+
+<!-- LOADING SCREEN -->
+<div class="loading-screen" id="loading-screen">
+    <div class="bk-loader-wrap">
+        <div class="bk-ring r1"></div>
+        <div class="bk-ring r2"></div>
+        <div class="bk-ring r3"></div>
+        <div class="bk-core">BK</div>
+    </div>
+    <div class="loading-brand">BK TEXT</div>
+    <div class="loading-sub">My Life,My choice  </div>
+    <div class="loading-dots">
+        <span></span><span></span><span></span>
+    </div>
+</div>
+
+<div class="app-wrapper">
+    <div class="auth-view" id="auth-view">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h1 style="font-size: 36px; font-weight: 900; letter-spacing: -0.5px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">BK Text</h1>
+            <p style="color: var(--text-muted); font-size: 14px; margin-top: 5px; font-weight: 500;">ဝတ္ထုနှင့် အနုပညာရပ်ဝန်းမှ ကြိုဆိုပါသည်</p>
+        </div>
+        
+        <div class="auth-card">
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="tab-login" onclick="switchAuthMode('login')">လော့ဂ်အင်</div>
+                <div class="auth-tab" id="tab-register" onclick="switchAuthMode('register')">အကောင့်သစ်</div>
+            </div>
+            
+            <form onsubmit="handleAuthSubmit(event)">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="auth-email" class="auth-input" placeholder="အီးမေးလ်လိပ်စာ" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="auth-password" class="auth-input" placeholder="လျှို့ဝှက်နံပါတ်" required>
+                </div>
+                
+                <button type="submit" class="auth-btn">
+                    <span id="auth-submit-text">လော့ဂ်အင်ဝင်မည်</span>
+                </button>
+            </form>
+            
+            <div style="display: flex; align-items: center; margin: 20px 0; color: var(--text-muted); font-size: 12px; font-weight: 600;">
+                <div style="flex: 1; height: 1px; background: var(--border-color);"></div>
+                <div style="padding: 0 10px;">သို့မဟုတ်</div>
+                <div style="flex: 1; height: 1px; background: var(--border-color);"></div>
+            </div>
+            
+            <!-- Social Login Buttons -->
+            <div class="social-btn-row">
+                <button class="social-btn google" onclick="loginWithGoogle()" id="google-login-btn">
+                    <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+                        <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+                        <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+                        <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+                    </svg>
+                    Google
+                </button>
+                <button class="social-btn facebook" onclick="loginWithFacebook()" id="facebook-login-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    Facebook
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-content" style="display: none; opacity: 0; transition: opacity 0.4s ease; flex: 1; position: relative;">
+        <header class="app-header">
+            <span class="logo-text">BK Text</span>
+            <i class="fas fa-feather-pointed" style="font-size: 18px; color: var(--primary-color);"></i>
+        </header>
+
+        <div class="tab-view" id="home-view">
+            <div class="ads-container" id="ads-area">
+                <div class="ads-wrapper">
+                    <div class="ads-track" id="ads-track" onscroll="handleAdsScroll()"></div>
+                    <div class="ads-indicators" id="ads-indicators"></div>
+                </div>
+            </div>
+
+            <div class="quote-container" id="quote-area">
+                <div class="quote-box">
+                    <div class="quote-text" id="daily-note-text">စာသားများဆွဲတင်နေသည်...</div>
+                    <div class="quote-author" id="daily-note-author">- Author</div>
+                </div>
+            </div>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" class="search-input" placeholder="ခေါင်းစဉ်ဖြင့် ရှာဖွေရန်..." oninput="handleSearch()">
+                </div>
+            </div>
+
+<!-- ============================================================
+     ADSTERRA BANNER 320x50 — Search Box အောက်
+============================================================ -->
+<div class="top-banner-ad" style="width: 100%; display: flex; justify-content: center; align-items: center; margin: 10px 0; min-height: 50px;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'dd7644dc361b5864712362e0f52f2536',
+            'format' : 'iframe',
+            'height' : 50,
+            'width' : 320,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://www.highrevenueformat.com/dd7644dc361b5864712362e0f52f2536/invoke.js"></script>
+</div>
+
+<div class="category-bar" id="category-bar">
+    <button class="category-btn active" onclick="filterCategory('all', this)">အားလုံး</button>
+    <button class="category-btn" onclick="filterCategory('ဝတ္ထု', this)">ဝတ္ထု</button>
+    <button class="category-btn" onclick="filterCategory('အောင်မြင်ရေး', this)">အောင်မြင်ရေး</button>
+    <button class="category-btn" onclick="filterCategory('ကဗျာ', this)">ကဗျာ</button>
+    <button class="category-btn premium-glow-btn" onclick="filterCategory('premium', this)">👑 Premium</button>
+</div>
+
+<!-- ============================================================
+     ADSTERRA NATIVE BANNER — HOME
+============================================================ -->
+<div class="home-native-ad" style="width: 100%; padding: 0 20px; margin-bottom: 15px; text-align: center; min-height: 100px;">
+    <script async="async" data-cfasync="false" src="https://pl30548760.profitableratecpmnetwork.com/ef1a2101990dbd5b043b2578905319c3/invoke.js"></script>
+    <div id="container-ef1a2101990dbd5b043b2578905319c3"></div>
+</div>
+
+            <div class="main-feed" id="stories-feed"></div>
+            
+            <div class="scroll-loader" id="scroll-loader">
+                <i class="fas fa-spinner fa-spin"></i> ဇာတ်လမ်းများ ထပ်မံဆွဲတင်နေသည်...
+            </div>
+        </div>
+
+     <div class="tab-view" id="profile-view">
+            <div class="coin-hero" id="profile-coin-hero">
+                <div class="coin-hero-left">
+                    <div class="coin-hero-label">Your Premium Coin</div>
+                    <div class="coin-hero-value">
+                        <i class="fas fa-coins"></i>
+                        <span id="profile-coin-value">0</span>
+                    </div>
+                    <button class="buy-premium-coin-btn" id="coin-buy-premium-btn" style="display:none;" onclick="redeemPremiumWithCoin()">
+                        <i class="fas fa-crown"></i> Buy Premium (1200)
+                    </button>
+                </div>
+                <div class="coin-hero-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+            </div>
+
+            <!-- ========== PREMIUM PROFILE CARD ========== -->
+            <div class="profile-card" id="main-profile-card">
+                <div class="premium-crown-badge">👑</div>
+                <div class="premium-sparkles" id="premium-sparkles"></div>
+                
+                <div class="avatar-container">
+                    <div class="avatar-box" id="user-avatar-box">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="avatar-edit-icon" onclick="triggerAvatarSelection()">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <input type="file" id="avatar-input" style="display: none;" accept="image/*" onchange="handleAvatarUpload(event)">
+                </div>
+                
+                <div class="profile-name-row">
+                    <span class="profile-name" id="user-profile-name">User Name</span>
+                    <i class="fas fa-edit" style="font-size:13px; color:var(--text-muted); cursor:pointer;" onclick="handleNameEdit()"></i>
+                </div>
+                <div class="profile-email" id="user-profile-email">email@domain.com</div>
+                
+                <div class="role-badge-container" id="user-role-badge-container">
+                    <span class="role-badge role-reader"><i class="fas fa-book"></i> သာမန်စာဖတ်သူ</span>
+                </div>
+
+                <div class="monetize-actions">
+                    <button class="monetize-btn btn-premium" onclick="openSubscriptionModal('premium')">
+                        <i class="fas fa-crown"></i> Premium ဝယ်ယူရန်
+                    </button>
+                    <button class="monetize-btn btn-artist" onclick="openSubscriptionModal('artist')">
+                        <i class="fas fa-palette"></i> Artist အကောင့်ဖွင့်ရန်
+                    </button>
+                </div>
+            </div>
+
+            <!-- ============ REPORT TEAM + READ UPDATE ============ -->
+            <div class="settings-container">
+                <div class="settings-item" onclick="openReportChat()">
+                    <div class="settings-left">
+                        <i class="fas fa-headset" style="color: #3b82f6;"></i>
+                        <span>Report Team</span>
+                    </div>
+                    <div class="settings-right">
+                        <span>Admin ကို ဆက်သွယ်</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+
+                <div class="settings-item" onclick="openReadUpdates()">
+                    <div class="settings-left">
+                        <i class="fas fa-bullhorn" style="color: #f59e0b;"></i>
+                        <span>Read Update</span>
+                    </div>
+                    <div class="settings-right">
+                        <span id="updates-badge" style="display:none; background:#ef4444; color:#fff; padding:2px 8px; border-radius:10px; font-size:10px; font-weight:700;">NEW</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-container">
+                <div class="settings-item">
+                    <div class="settings-left">
+                        <i class="fas fa-circle-half-stroke"></i>
+                        <span>Dark Mode</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="dark-mode-switch" onchange="toggleThemeSwitch(this)">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="settings-item" style="flex-direction: column; align-items: stretch; gap: 5px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <div class="settings-left">
+                            <i class="fas fa-palette"></i>
+                            <span>Themes</span>
+                        </div>
+                        <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">👑 = Premium</span>
+                    </div>
+                    <div class="theme-grid" id="theme-grid">
+                        <div class="theme-swatch swatch-light" data-theme-value="light" onclick="selectTheme('light', this)">
+                            <div class="theme-swatch-label">Default</div>
+                        </div>
+                        <div class="theme-swatch swatch-ocean premium-locked" data-theme-value="ocean" onclick="selectTheme('ocean', this)">
+                            <div class="theme-swatch-label">Ocean</div>
+                        </div>
+                        <div class="theme-swatch swatch-sunset premium-locked" data-theme-value="sunset" onclick="selectTheme('sunset', this)">
+                            <div class="theme-swatch-label">Sunset</div>
+                        </div>
+                        <div class="theme-swatch swatch-emerald premium-locked" data-theme-value="emerald" onclick="selectTheme('emerald', this)">
+                            <div class="theme-swatch-label">Emerald</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-item">
+                    <div class="settings-left">
+                        <i class="fas fa-music"></i>
+                        <span>Background Music</span>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <select id="bg-music-track" class="music-select" onchange="handleMusicTrackChange(this)">
+                            <option value="bktext1.mp3">Track 1 (Free)</option>
+                            <option value="bktext2.mp3">Track 2 (Free)</option>
+                            <option value="bktext3.mp3" class="premium-track-opt">👑 Track 3 (Premium)</option>
+                            <option value="bktext4.mp3" class="premium-track-opt">👑 Track 4 (Premium)</option>
+                            <option value="bktext5.mp3" class="premium-track-opt">👑 Track 5 (Premium)</option>
+                            <option value="bktext6.mp3" class="premium-track-opt">👑 Track 6 (Premium)</option>
+                            <option value="bktext7.mp3" class="premium-track-opt">👑 Track 7 (Premium)</option>
+                        </select>
+                        <label class="switch">
+                            <input type="checkbox" id="music-switch" onchange="toggleMusicSwitch(this)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="logout-row-btn" onclick="handleLogout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>အကောင့်ထဲမှ ထွက်မည်</span>
+            </button>
+        </div>
+
+        <!-- Coin / Missions View -->
+        <div class="tab-view" id="coin-view">
+            <div class="coin-view">
+                <div class="coin-header-card">
+                    <div class="coin-big-icon"><i class="fas fa-coins"></i></div>
+                    <div class="coin-big-value" id="coin-view-value">0</div>
+                    <div class="coin-big-label">Your Premium Coins</div>
+                </div>
+
+                <div class="coin-missions-title">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Daily Missions</span>
+                </div>
+
+                <div class="coin-mission-card">
+                    <div class="coin-mission-icon mission-daily"><i class="fas fa-calendar-day"></i></div>
+                    <div class="coin-mission-info">
+                        <div class="coin-mission-title">Daily Coin</div>
+                        <div class="coin-mission-desc">၂၄ နာရီပြည့်တိုင်း ၁ ကြိမ်</div>
+                        <div class="coin-mission-reward">+ 20 Coins</div>
+                    </div>
+                    <button class="coin-claim-btn" id="claim-daily-btn" onclick="claimMission('daily')">Claim</button>
+                </div>
+
+                <div class="coin-mission-card">
+                    <div class="coin-mission-icon mission-10min"><i class="fas fa-clock"></i></div>
+                    <div class="coin-mission-info">
+                        <div class="coin-mission-title">10 Minutes Coin</div>
+                        <div class="coin-mission-desc">App ထဲ ၁၀ မိနစ် နေထိုင်ပါ</div>
+                        <div class="coin-progress-bar"><div class="coin-progress-fill" id="progress-10min"></div></div>
+                        <div class="coin-mission-reward">+ 1.5 Coins</div>
+                    </div>
+                    <button class="coin-claim-btn" id="claim-10min-btn" onclick="claimMission('min10')" disabled>Claim</button>
+                </div>
+
+                <div class="coin-mission-card">
+                    <div class="coin-mission-icon mission-30min"><i class="fas fa-hourglass-half"></i></div>
+                    <div class="coin-mission-info">
+                        <div class="coin-mission-title">30 Minutes Coin</div>
+                        <div class="coin-mission-desc">App ထဲ ၃၀ မိနစ် နေထိုင်ပါ</div>
+                        <div class="coin-progress-bar"><div class="coin-progress-fill" id="progress-30min"></div></div>
+                        <div class="coin-mission-reward">+ 3.5 Coins</div>
+                    </div>
+                    <button class="coin-claim-btn" id="claim-30min-btn" onclick="claimMission('min30')" disabled>Claim</button>
+                </div>
+
+                <div class="coin-mission-card">
+                    <div class="coin-mission-icon mission-1hr"><i class="fas fa-hourglass-end"></i></div>
+                    <div class="coin-mission-info">
+                        <div class="coin-mission-title">1 Hour Coin</div>
+                        <div class="coin-mission-desc">App ထဲ ၁ နာရီ နေထိုင်ပါ</div>
+                        <div class="coin-progress-bar"><div class="coin-progress-fill" id="progress-1hr"></div></div>
+                        <div class="coin-mission-reward">+ 10 Coins</div>
+                    </div>
+                    <button class="coin-claim-btn" id="claim-1hr-btn" onclick="claimMission('hr1')" disabled>Claim</button>
+                </div>
+
+                <div class="coin-redeem-card">
+                    <div style="font-size: 40px; margin-bottom: 8px;">👑</div>
+                    <h3>1 Month Premium Trial</h3>
+                    <p>Coins 1200 ပြည့်ပါက Premium ၁ လစာ Trial အသုံးပြုနိုင်ပါသည်။</p>
+                    <button class="coin-redeem-btn" id="coin-redeem-main-btn" onclick="redeemPremiumWithCoin()" disabled>
+                        <i class="fas fa-crown"></i> Redeem Now (1200 Coins)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOWNLOAD VIEW -->
+        <div class="tab-view" id="download-view">
+            <div class="download-view">
+                <div class="download-header">
+                    <i class="fas fa-download" style="color: var(--primary-color);"></i>
+                    ဒေါင်းလုဒ်ထားသော စာများ
+                </div>
+                <div id="download-list"></div>
+            </div>
+        </div>
+
+        <div class="reader-view" id="reader-view">
+            <div class="reader-header">
+                <button class="back-btn" onclick="closeReader()"><i class="fas fa-arrow-left"></i></button>
+                <span id="reader-header-title" style="font-weight: 600;">စာဖတ်ခန်း</span>
+                <button class="back-btn" id="reader-download-btn" style="margin-left:auto;" onclick="downloadCurrentStory()" title="ဒေါင်းလုဒ်">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+            <div class="reader-content" id="reader-body"></div>
+        </div>
+
+        <!-- REPORT CHAT VIEW -->
+        <div class="chat-view" id="report-chat-view">
+            <div class="chat-header">
+                <button class="back-btn" onclick="closeReportChat()"><i class="fas fa-arrow-left"></i></button>
+                <div class="chat-avatar">BK</div>
+                <div class="chat-info">
+                    <div class="chat-name">To BK Team</div>
+                    <div class="chat-status"><i class="fas fa-circle" style="font-size: 8px;"></i> Online</div>
+                </div>
+            </div>
+            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-input-row">
+                <input type="text" class="chat-input" id="chat-input" placeholder="မက်ဆေ့ချ် ရေးပါ..." onkeypress="if(event.key==='Enter') sendChatMessage()">
+                <button class="chat-send-btn" id="chat-send-btn" onclick="sendChatMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- READ UPDATE VIEW -->
+        <div class="updates-view" id="updates-view">
+            <div class="reader-header">
+                <button class="back-btn" onclick="closeReadUpdates()"><i class="fas fa-arrow-left"></i></button>
+                <span style="font-weight: 600;">Read Update</span>
+            </div>
+            <div class="updates-list" id="updates-list"></div>
+        </div>
+
+        <div class="bottom-nav">
+            <button class="nav-item active" id="nav-home" onclick="switchNav('home')">
+                <i class="fas fa-book-open"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" id="nav-saved" onclick="switchNav('saved')">
+                <i class="fas fa-bookmark"></i>
+                <span>Bookmarks</span>
+            </button>
+            <button class="nav-item" id="nav-download" onclick="switchNav('download')">
+                <i class="fas fa-download"></i>
+                <span>Download</span>
+            </button>
+            <button class="nav-item" id="nav-coin" onclick="switchNav('coin')">
+                <i class="fas fa-coins"></i>
+                <span>Free Coin</span>
+            </button>
+            <button class="nav-item" id="nav-profile" onclick="switchNav('profile')">
+                <i class="fas fa-user-gear"></i>
+                <span>Profile</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="subscription-modal">
+    <div class="modal-box">
+        <div class="modal-icon" id="modal-icon">👑</div>
+        <div class="modal-title" id="modal-title">Premium အဖွဲ့ဝင်ဝင်မည်</div>
+        <div class="modal-scroll-area">
+            <div class="modal-desc" id="modal-desc">စာသားများ ဤနေရာတွင် ပေါ်မည်...</div>
+        </div>
+        <button class="modal-action-btn" id="modal-action-btn" onclick="redirectToTelegram()">
+            <i class="fab fa-telegram-plane"></i> <span id="modal-btn-text">ဆက်လက်လုပ်ဆောင်မည်</span>
+        </button>
+        <button class="modal-close-btn" onclick="closeSubscriptionModal()">ပိတ်မည်</button>
+    </div>
+</div>
+
+<audio id="bg-audio" loop></audio>
+<audio id="post-audio-player-element"></audio>
+
+<script>
+// ============================================================
+// FIREBASE CONFIG
+// ============================================================
+const firebaseConfig = {
+    apiKey: "AIzaSyB-zSK4A33qhtMW1t2po1yd5TMS7B60BvE",
+    authDomain: "movie-ea511.firebaseapp.com",
+    databaseURL: "https://movie-ea511-default-rtdb.firebaseio.com",
+    projectId: "movie-ea511",
+    storageBucket: "movie-ea511.firebasestorage.app",
+    messagingSenderId: "723195247972",
+    appId: "1:723195247972:web:28d45d060535b0701c8e71",
+    measurementId: "G-EXQM32J68Z"
+};
+
+if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const database = firebase.database();
+
+const CURRENT_APP_VERSION = "1.0.5";
+
+// ============================================================
+// GLOBAL STATE
+// ============================================================
+let currentAuthMode = 'login';
+let storiesData = [];
+let bookmarks = JSON.parse(localStorage.getItem('bk_bookmarks')) || [];
+let currentCategory = 'all';
+let currentView = 'home';
+let isUserPremium = false;
+let isUserArtist = false;
+let adsTimer = null;
+let activeTargetModal = 'premium';
+let userCoins = 0;
+let userCoinData = {};
+let currentUserUid = null;
+let currentReaderStory = null;
+
+// Adcash
+let adcashVideoSliderLoaded = false;
+
+// Server time
+let serverTimeOffset = 0;
+let sessionStartServerTime = 0;
+let sessionMinutes = 0;
+let coinTimerInterval = null;
+
+// Audio
+let currentAudioQueue = [];
+let currentAudioQueueIndex = 0;
+let postAudio = document.getElementById("post-audio-player-element");
+let wasBgMusicPlayingBeforeAudio = false;
+
+// Pagination
+let currentPageLimit = 10;
+let filteredStoriesCache = [];
+
+// Chat + Updates
+let chatListener = null;
+let updatesListener = null;
+let coinListener = null;
+let profileListener = null;
+let storiesListener = null;
+let dailyNoteListener = null;
+let adsImagesListener = null;
+let lastSeenUpdateTimestamp = parseInt(localStorage.getItem('bk_last_update') || '0');
+
+// Downloads
+let downloads = JSON.parse(localStorage.getItem('bk_downloads')) || [];
+
+// Ad tracking
+let adsterraReaderCounter = 0;
+
+// History state
+let navHistory = [];
+
+// ============================================================
+// VERSION CONTROL
+// ============================================================
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        const todayStr = new Date().toISOString().split('T')[0];
+        database.ref('users/' + user.uid).update({
+            email: user.email || '',
+            displayName: user.displayName || 'User',
+            lastLoginDate: todayStr
+        });
+    }
+    checkAppVersionUpdate();
+});
+
+function checkAppVersionUpdate() {
+    database.ref('app_controls/latest_version').on('value', (snapshot) => {
+        const data = snapshot.val();
+        if (!data) return;
+        if (data.version && data.version !== CURRENT_APP_VERSION) {
+            document.getElementById("update-modal-version").innerText = "Version: " + data.version;
+            document.getElementById("update-modal-remark").innerText = data.remark || "စနစ်များ ပိုမိုကောင်းမွန်အောင် ပြင်ဆင်ထားပါသည်။";
+            const downloadBtn = document.getElementById("update-download-btn");
+            downloadBtn.onclick = function() { window.open(data.downloadUrl, '_blank'); };
+            const skipBtn = document.getElementById("update-skip-btn");
+            skipBtn.style.display = data.isForce ? "none" : "block";
+            document.getElementById("update-modal-overlay").style.display = "flex";
+        }
+    });
+}
+
+function closeUpdateModal() {
+    document.getElementById("update-modal-overlay").style.display = "none";
+}
+
+// ============================================================
+// MYANMAR BAN — IP CHECK
+// ============================================================
+async function checkMyanmarBan() {
+    try {
+        const cached = sessionStorage.getItem('bk_geo_checked');
+        const cachedCountry = sessionStorage.getItem('bk_geo_country');
+        if (cached === 'true' && cachedCountry !== 'MM') return true;
+        
+        const res = await fetch('https://ipapi.co/json/');
+        const data = await res.json();
+        const country = data.country_code;
+        
+        sessionStorage.setItem('bk_geo_checked', 'true');
+        sessionStorage.setItem('bk_geo_country', country || '');
+        
+        if (country === 'MM') {
+            document.getElementById('myanmar-ban-modal').classList.add('active');
+            document.querySelector('.loading-screen').style.display = 'none';
+            return false;
+        }
+        return true;
+    } catch (e) {
+        return true;
+    }
+}
+
+// ============================================================
+// SERVER TIME
+// ============================================================
+function getServerNow() { return Date.now() + serverTimeOffset; }
+
+function fetchServerTimeOffset() {
+    return new Promise((resolve) => {
+        database.ref('.info/serverTimeOffset').once('value', (snap) => {
+            serverTimeOffset = snap.val() || 0;
+            resolve(serverTimeOffset);
+        });
+    });
+}
+
+function getServerToday() {
+    const d = new Date(getServerNow());
+    const y = d.getUTCFullYear();
+    const m = String(d.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(d.getUTCDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+}
+
+// ============================================================
+// PREMIUM EXPIRY
+// ============================================================
+function checkPremiumExpiry(userData) {
+    if (!userData) return false;
+    if (!userData.isPremium) return false;
+    if (userData.premiumType !== 'coin-trial') return true;
+    if (!userData.premiumExpiry) return true;
+    const expiryMs = new Date(userData.premiumExpiry).getTime();
+    if (getServerNow() >= expiryMs) {
+        database.ref('users/' + currentUserUid).update({
+            isPremium: false, premiumType: null, premiumExpiry: null
+        });
+        return false;
+    }
+    return true;
+}
+
+// ============================================================
+// ADCASH VIDEO SLIDER
+// ============================================================
+function loadAdcashVideoSlider() {
+    if (isUserPremium) return;
+    if (adcashVideoSliderLoaded) return;
+    if (typeof aclib === 'undefined') return;
+    try {
+        aclib.runVideoSlider({ zoneId: '12244302' });
+        adcashVideoSliderLoaded = true;
+    } catch(e) { console.log("Video Slider error:", e); }
+}
+
+// ============================================================
+// READER INLINE BANNER AD (320x50) — Content အလယ်
+// ============================================================
+let readerAdCounter = 0;
+
+function buildReaderInlineAd() {
+    if (isUserPremium) return '';
+    readerAdCounter++;
+    const uniqueKey = 'reader-banner-' + Date.now() + '-' + readerAdCounter;
+    return `
+        <div class="reader-inline-ad">
+            <div class="reader-inline-ad-label">📢 Sponsored</div>
+            <div id="${uniqueKey}">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : 'dd7644dc361b5864712362e0f52f2536',
+                        'format' : 'iframe',
+                        'height' : 50,
+                        'width' : 320,
+                        'params' : {}
+                    };
+                <\/script>
+                <script type="text/javascript" src="https://www.highrevenueformat.com/dd7644dc361b5864712362e0f52f2536/invoke.js"><\/script>
+            </div>
+        </div>
+    `;
+}
+
+// ============================================================
+// INIT
+// ============================================================
+window.addEventListener("load", async () => {
+    const allowed = await checkMyanmarBan();
+    if (!allowed) return;
+    
+    const loader = document.getElementById("loading-screen");
+    const nav = document.querySelector(".bottom-nav");
+    if (nav) nav.style.display = "none";
+    
+    setTimeout(() => {
+        loader.classList.add("hide");
+        setTimeout(() => { loader.style.display = "none"; }, 600);
+    }, 2000);
+});
+
+// ============================================================
+// INIT — Back Button Support
+// ============================================================
+function pushNavState(view) {
+    history.pushState({ bkView: view, ts: Date.now() }, '', '');
+}
+
+window.addEventListener('popstate', (event) => {
+    const readerOpen = document.getElementById("reader-view").style.display === "flex";
+    const chatOpen = document.getElementById("report-chat-view").classList.contains("active");
+    const updatesOpen = document.getElementById("updates-view").classList.contains("active");
+    
+    if (readerOpen) { closeReader(); pushNavState('home'); return; }
+    if (chatOpen) { closeReportChat(); pushNavState('home'); return; }
+    if (updatesOpen) { closeReadUpdates(); pushNavState('home'); return; }
+    
+    if (currentView !== 'home') { switchNav('home'); pushNavState('home'); return; }
+    
+    if (event.state && event.state.bkView === 'home') {
+        if (confirm("App မှ ထွက်ချင်ပါသလား?")) {
+            window.history.back();
+        } else {
+            pushNavState('home');
+        }
+    } else {
+        pushNavState('home');
+    }
+});
+
+document.addEventListener("DOMContentLoaded", async () => {
+    postAudio = document.getElementById("post-audio-player-element");
+    
+    history.replaceState({ bkView: 'home' }, '', '');
+    pushNavState('home');
+    
+    try { await fetchServerTimeOffset(); } catch(e) { console.log(e); }
+    
+    checkSavedTheme();
+    applySavedCustomTheme();
+    initAudioSettings();
+    renderDownloads();
+    generateSparkles();
+    
+    // Handle Gmail/Facebook Redirect Result
+    auth.getRedirectResult().then((result) => {
+        if (result && result.user) {
+            database.ref('users/' + result.user.uid).once('value').then((snapshot) => {
+                if (!snapshot.exists()) {
+                    return database.ref('users/' + result.user.uid).set({
+                        email: result.user.email,
+                        username: result.user.displayName || result.user.email.split('@')[0],
+                        isPremium: false, role: 'reader',
+                        coinData: { totalCoins: 0, claimed: {} }
+                    });
+                }
+            });
+        }
+    }).catch((error) => {
+        console.error("Redirect result error:", error);
+    });
+    
+    window.addEventListener("scroll", handleWindowInfiniteScroll);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("beforeunload", handleAppClose);
+    window.addEventListener("pagehide", handleAppClose);
+
+    auth.onAuthStateChanged((user) => {
+        const authView = document.getElementById("auth-view");
+        const appContent = document.getElementById("app-content");
+        const nav = document.querySelector(".bottom-nav");
+
+        if (user) {
+            currentUserUid = user.uid;
+            authView.style.opacity = "0";
+            authView.style.transform = "scale(0.9)";
+            setTimeout(() => {
+                authView.style.display = "none";
+                appContent.style.display = "block";
+                if (nav) nav.style.display = "flex";
+                setTimeout(() => {
+                    appContent.style.opacity = "1";
+                    switchNav('home');
+                    pushNavState('home');
+                    setTimeout(() => loadAdcashVideoSlider(), 1500);
+                }, 50);
+            }, 400);
+            
+            document.getElementById("user-profile-email").innerText = user.email;
+            
+            cleanupListeners();
+            
+            syncUserProfileAndStatus(user.uid);
+            syncUserCoins(user.uid);
+            startCoinSessionTracker();
+            listenToStories();
+            listenToDailyNote();
+            listenToAdsImages();
+            listenToReadUpdates();
+        } else {
+            currentUserUid = null;
+            appContent.style.display = "none";
+            appContent.style.opacity = "0";
+            authView.style.display = "flex";
+            authView.style.opacity = "1";
+            authView.style.transform = "scale(1)";
+            if (nav) nav.style.display = "none";
+            isUserPremium = false;
+            isUserArtist = false;
+            clearInterval(adsTimer);
+            stopCoinSessionTracker();
+            stopBackgroundMusic();
+            stopPostAudio();
+            cleanupListeners();
+        }
+    });
+});
+
+function cleanupListeners() {
+    if (chatListener) { chatListener.off(); chatListener = null; }
+    if (updatesListener) { updatesListener.off(); updatesListener = null; }
+    if (coinListener) { coinListener.off(); coinListener = null; }
+    if (profileListener) { profileListener.off(); profileListener = null; }
+    if (storiesListener) { storiesListener.off(); storiesListener = null; }
+    if (dailyNoteListener) { dailyNoteListener.off(); dailyNoteListener = null; }
+    if (adsImagesListener) { adsImagesListener.off(); adsImagesListener = null; }
+}
+
+// ============================================================
+// PREMIUM SPARKLES ANIMATION
+// ============================================================
+function generateSparkles() {
+    const container = document.getElementById('premium-sparkles');
+    if (!container) return;
+    container.innerHTML = '';
+    for (let i = 0; i < 15; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = Math.random() * 100 + '%';
+        sparkle.style.animationDelay = (Math.random() * 3) + 's';
+        sparkle.style.animationDuration = (2 + Math.random() * 2) + 's';
+        const colors = ['#fbbf24', '#ec4899', '#8b5cf6', '#3b82f6', '#10b981'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        sparkle.style.background = color;
+        sparkle.style.boxShadow = `0 0 10px ${color}, 0 0 20px ${color}`;
+        container.appendChild(sparkle);
+    }
+}
+
+// ============================================================
+// VISIBILITY / APP CLOSE
+// ============================================================
+function handleVisibilityChange() {
+    if (!currentUserUid) return;
+    if (document.hidden) { saveSessionProgress(); stopCoinSessionTracker(); }
+    else { startCoinSessionTracker(); }
+}
+function handleAppClose() { if (!currentUserUid) return; saveSessionProgress(); }
+function saveSessionProgress() {
+    if (!currentUserUid) return;
+    database.ref('users/' + currentUserUid + '/coinData').update({
+        lastActiveServerTime: firebase.database.ServerValue.TIMESTAMP,
+        lastSessionMinutes: sessionMinutes
+    });
+}
+
+// ============================================================
+// COIN SYSTEM
+// ============================================================
+function syncUserCoins(uid) {
+    if (coinListener) coinListener.off();
+    const ref = database.ref('users/' + uid + '/coinData');
+    coinListener = ref.on('value', (snapshot) => {
+        userCoinData = snapshot.val() || {};
+        userCoins = userCoinData.totalCoins || 0;
+        updateCoinUI();
+        updateMissionButtons();
+    });
+}
+
+function updateCoinUI() {
+    const profileCoin = document.getElementById("profile-coin-value");
+    const coinViewVal = document.getElementById("coin-view-value");
+    if (profileCoin) profileCoin.innerText = userCoins;
+    if (coinViewVal) coinViewVal.innerText = userCoins;
+    const buyBtn = document.getElementById("coin-buy-premium-btn");
+    const redeemMainBtn = document.getElementById("coin-redeem-main-btn");
+    const canRedeem = userCoins >= 1200 && !isUserPremium;
+    if (buyBtn) buyBtn.style.display = canRedeem ? "flex" : "none";
+    if (redeemMainBtn) redeemMainBtn.disabled = !canRedeem;
+}
+
+function startCoinSessionTracker() {
+    sessionStartServerTime = getServerNow();
+    sessionMinutes = 0;
+    if (coinTimerInterval) clearInterval(coinTimerInterval);
+    coinTimerInterval = setInterval(() => {
+        sessionMinutes = (getServerNow() - sessionStartServerTime) / 60000;
+        updateMissionButtons();
+        updateMissionProgress();
+    }, 3000);
+}
+function stopCoinSessionTracker() {
+    if (coinTimerInterval) clearInterval(coinTimerInterval);
+    coinTimerInterval = null;
+}
+
+function updateMissionProgress() {
+    const p10 = Math.min((sessionMinutes / 10) * 100, 100);
+    const p30 = Math.min((sessionMinutes / 30) * 100, 100);
+    const p60 = Math.min((sessionMinutes / 60) * 100, 100);
+    const el10 = document.getElementById("progress-10min");
+    const el30 = document.getElementById("progress-30min");
+    const el60 = document.getElementById("progress-1hr");
+    if (el10) el10.style.width = p10 + "%";
+    if (el30) el30.style.width = p30 + "%";
+    if (el60) el60.style.width = p60 + "%";
+}
+
+function isClaimedToday(type) {
+    const claimed = userCoinData.claimed || {};
+    return claimed[type] === getServerToday();
+}
+
+function updateMissionButtons() {
+    const cfg = [
+        { id: 'claim-daily-btn', type: 'daily', min: 0 },
+        { id: 'claim-10min-btn', type: 'min10', min: 10 },
+        { id: 'claim-30min-btn', type: 'min30', min: 30 },
+        { id: 'claim-1hr-btn', type: 'hr1', min: 60 }
+    ];
+    cfg.forEach(c => {
+        const btn = document.getElementById(c.id);
+        if (!btn) return;
+        const claimed = isClaimedToday(c.type);
+        const eligible = c.type === 'daily' || sessionMinutes >= c.min;
+        btn.disabled = claimed || !eligible;
+        btn.innerText = claimed ? "Claimed" : "Claim";
+        btn.classList.toggle("claimed", claimed);
+    });
+}
+
+function claimMission(type) {
+    if (!currentUserUid) return;
+    const today = getServerToday();
+    let reward = 0, label = "", eligible = false;
+
+    if (type === 'daily') {
+        if (isClaimedToday('daily')) return alert("ယနေ့ Daily Coin ကို ရယူပြီးဖြစ်ပါသည်။");
+        reward = 20; label = "Daily Coin"; eligible = true;
+    } else if (type === 'min10') {
+        if (isClaimedToday('min10')) return alert("ယနေ့ 10 Minutes Coin ကို ရယူပြီးဖြစ်ပါသည်။");
+        if (sessionMinutes < 10) return alert("App ထဲ ၁၀ မိနစ် မပြည့်သေးပါ။");
+        reward = 1.5; label = "10 Minutes Coin"; eligible = true;
+    } else if (type === 'min30') {
+        if (isClaimedToday('min30')) return alert("ယနေ့ 30 Minutes Coin ကို ရယူပြီးဖြစ်ပါသည်။");
+        if (sessionMinutes < 30) return alert("App ထဲ ၃၀ မိနစ် မပြည့်သေးပါ။");
+        reward = 3.5; label = "30 Minutes Coin"; eligible = true;
+    } else if (type === 'hr1') {
+        if (isClaimedToday('hr1')) return alert("ယနေ့ 1 Hour Coin ကို ရယူပြီးဖြစ်ပါသည်။");
+        if (sessionMinutes < 60) return alert("App ထဲ ၁ နာရီ မပြည့်သေးပါ။");
+        reward = 10; label = "1 Hour Coin"; eligible = true;
+    }
+    if (!eligible) return;
+
+    database.ref('users/' + currentUserUid + '/coinData').transaction((data) => {
+        if (data === null) data = {};
+        const claimed = data.claimed || {};
+        if (claimed[type] === today) return;
+        data.totalCoins = (data.totalCoins || 0) + reward;
+        claimed[type] = today;
+        data.claimed = claimed;
+        return data;
+    }).then((result) => {
+        if (result.committed) {
+            database.ref('users/' + currentUserUid + '/coinData').once('value').then((snap) => {
+                const d = snap.val() || {};
+                userCoins = d.totalCoins || 0;
+                userCoinData = d;
+                updateCoinUI();
+                updateMissionButtons();
+            });
+            alert(`✅ ${label} ရယူပြီးပါပြီ!\n+${reward} Coins ရရှိပါသည်။`);
+        } else {
+            alert("Coin ရယူပြီးဖြစ်ပါသည် (server မှ စစ်ဆေးပြီး)။");
+        }
+    }).catch(err => alert("Coin ရယူ၍ မရပါ- " + err.message));
+}
+
+function redeemPremiumWithCoin() {
+    if (!currentUserUid) return;
+    if (isUserPremium) return alert("သင်သည် Premium User ဖြစ်ပြီးသားဖြစ်ပါသည်။");
+    if (userCoins < 1200) return alert("Coins မလုံလောက်ပါ။ 1200 လိုအပ်ပါသည်။");
+    if (!confirm("Coins 1200 ဖြင့် Premium ၁ လစာ Trial ရယူမှာ သေချာပါသလား?")) return;
+    
+    const expiryMs = getServerNow() + (30 * 24 * 60 * 60 * 1000);
+    const expiryISO = new Date(expiryMs).toISOString();
+    
+    database.ref('users/' + currentUserUid + '/coinData/totalCoins').transaction((coins) => {
+        if (coins === null) coins = 0;
+        if (coins < 1200) return;
+        return coins - 1200;
+    }).then((result) => {
+        if (result.committed) {
+            return database.ref('users/' + currentUserUid).update({
+                isPremium: true, premiumType: 'coin-trial', premiumExpiry: expiryISO
+            });
+        } else throw new Error("Coins မလုံလောက်ပါ။");
+    }).then(() => {
+        alert("🎉 Premium ၁ လစာ Trial ရယူပြီးပါပြီ!");
+    }).catch(err => alert("Premium ရယူ၍ မရပါ- " + err.message));
+}
+
+// ============================================================
+// THEME
+// ============================================================
+function applySavedCustomTheme() {
+    const saved = localStorage.getItem("bk_custom_theme") || "light";
+    if (saved !== "light" && saved !== "dark") {
+        document.documentElement.setAttribute("data-theme", saved);
+    }
+    setTimeout(() => {
+        document.querySelectorAll(".theme-swatch").forEach(sw => {
+            sw.classList.toggle("active", sw.getAttribute("data-theme-value") === saved);
+        });
+    }, 300);
+}
+
+function selectTheme(themeValue, element) {
+    const premiumThemes = ["ocean", "sunset", "emerald", "royal"];
+    if (premiumThemes.includes(themeValue) && !isUserPremium) {
+        openSubscriptionModal('premium');
+        return;
+    }
+    document.documentElement.setAttribute("data-theme", themeValue);
+    localStorage.setItem("bk_custom_theme", themeValue);
+    document.querySelectorAll(".theme-swatch").forEach(sw => sw.classList.remove("active"));
+    element.classList.add("active");
+    const darkSwitch = document.getElementById("dark-mode-switch");
+    if (darkSwitch) darkSwitch.checked = (themeValue === "dark");
+    localStorage.setItem("bk_theme", themeValue === "dark" ? "dark" : "light");
+}
+
+function refreshThemePremiumLocks() {
+    const premiumThemes = ["ocean", "sunset", "emerald", "royal"];
+    document.querySelectorAll(".theme-swatch").forEach(sw => {
+        const t = sw.getAttribute("data-theme-value");
+        if (premiumThemes.includes(t)) sw.classList.toggle("premium-locked", !isUserPremium);
+    });
+}
+
+// ============================================================
+// AUDIO
+// ============================================================
+function initAudioSettings() {
+    const savedState = localStorage.getItem("bk_music_on") === "true";
+    const savedTrack = localStorage.getItem("bk_music_track") || "bktext1.mp3";
+    document.getElementById("music-switch").checked = savedState;
+    document.getElementById("bg-music-track").value = savedTrack;
+    updateMusicSelectorUI(savedTrack);
+    const audio = document.getElementById("bg-audio");
+    audio.src = savedTrack;
+    if (savedState && auth.currentUser) {
+        if (isPremiumTrack(savedTrack) && !isUserPremium) {
+            localStorage.setItem("bk_music_track", "bktext1.mp3");
+            audio.src = "bktext1.mp3";
+            document.getElementById("bg-music-track").value = "bktext1.mp3";
+            updateMusicSelectorUI("bktext1.mp3");
+        }
+        playBackgroundMusic();
+    }
+}
+
+function isPremiumTrack(trackValue) {
+    return ["bktext3.mp3", "bktext4.mp3", "bktext5.mp3", "bktext6.mp3", "bktext7.mp3"].includes(trackValue);
+}
+
+function updateMusicSelectorUI(trackValue) {
+    const selector = document.getElementById("bg-music-track");
+    if (isPremiumTrack(trackValue)) selector.classList.add("premium-active-select");
+    else selector.classList.remove("premium-active-select");
+}
+
+function toggleMusicSwitch(element) {
+    localStorage.setItem("bk_music_on", element.checked);
+    if (element.checked) {
+        const curTrack = document.getElementById("bg-music-track").value;
+        if (isPremiumTrack(curTrack) && !isUserPremium) {
+            element.checked = false;
+            localStorage.setItem("bk_music_on", "false");
+            openSubscriptionModal('premium');
+            return;
+        }
+        playBackgroundMusic();
+    } else stopBackgroundMusic();
+}
+
+function handleMusicTrackChange(element) {
+    const val = element.value;
+    if (isPremiumTrack(val) && !isUserPremium) {
+        const prev = localStorage.getItem("bk_music_track") || "bktext1.mp3";
+        element.value = prev;
+        updateMusicSelectorUI(prev);
+        openSubscriptionModal('premium');
+        return;
+    }
+    localStorage.setItem("bk_music_track", val);
+    updateMusicSelectorUI(val);
+    const audio = document.getElementById("bg-audio");
+    const wasPlaying = !audio.paused;
+    audio.src = val;
+    if (wasPlaying || localStorage.getItem("bk_music_on") === "true") playBackgroundMusic();
+}
+
+function playBackgroundMusic() {
+    const audio = document.getElementById("bg-audio");
+    if (localStorage.getItem("bk_music_on") === "true" && (!postAudio || postAudio.paused)) {
+        audio.play().catch(err => console.log("Audio play deferred"));
+    }
+}
+function stopBackgroundMusic() { document.getElementById("bg-audio").pause(); }
+
+// ============================================================
+// DAILY NOTE + ADS SLIDER
+// ============================================================
+function listenToDailyNote() {
+    if (dailyNoteListener) dailyNoteListener.off();
+    dailyNoteListener = database.ref('daily_notes').limitToLast(1).on('value', (snapshot) => {
+        const quoteArea = document.getElementById("quote-area");
+        if (snapshot.exists() && currentView === 'home') {
+            let note = "";
+            snapshot.forEach((child) => { note = child.val(); });
+            if (note && note.trim() !== "") {
+                document.getElementById("daily-note-text").innerText = note;
+                document.getElementById("daily-note-author").innerText = "- Daily Note";
+                quoteArea.style.display = "block";
+            } else quoteArea.style.display = "none";
+        } else quoteArea.style.display = "none";
+    });
+}
+
+function listenToAdsImages() {
+    if (adsImagesListener) adsImagesListener.off();
+    adsImagesListener = database.ref('ads_sliders').on('value', (snapshot) => {
+        const track = document.getElementById("ads-track");
+        const indicators = document.getElementById("ads-indicators");
+        const adsArea = document.getElementById("ads-area");
+        track.innerHTML = "";
+        indicators.innerHTML = "";
+        clearInterval(adsTimer);
+        if (snapshot.exists() && currentView === 'home') {
+            let count = 0;
+            snapshot.forEach((child) => {
+                const cd = child.val();
+                const imgUrl = (cd && typeof cd === 'object') ? cd.image_url : cd;
+                if (imgUrl) {
+                    track.innerHTML += `<div class="ads-slide"><img src="${imgUrl}" alt="Advertisement"></div>`;
+                    indicators.innerHTML += `<div class="indicator-dot ${count === 0 ? 'active' : ''}"></div>`;
+                    count++;
+                }
+            });
+            if (count > 0) {
+                adsArea.style.display = "block";
+                if (count > 1) {
+                    adsTimer = setInterval(() => {
+                        let cs = track.scrollLeft;
+                        let ms = track.scrollWidth - track.clientWidth;
+                        if (cs >= ms - 10) track.scrollTo({ left: 0, behavior: 'smooth' });
+                        else track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+                    }, 5000);
+                }
+            } else adsArea.style.display = "none";
+        } else adsArea.style.display = "none";
+    });
+}
+
+function handleAdsScroll() {
+    const track = document.getElementById("ads-track");
+    const dots = document.querySelectorAll(".indicator-dot");
+    if (track && dots.length > 0) {
+        let page = Math.round(track.scrollLeft / track.clientWidth);
+        dots.forEach((dot, index) => dot.classList.toggle("active", index === page));
+    }
+}
+
+// ============================================================
+// USER PROFILE
+// ============================================================
+function syncUserProfileAndStatus(uid) {
+    if (profileListener) profileListener.off();
+    profileListener = database.ref('users/' + uid).on('value', (snapshot) => {
+        const userData = snapshot.val();
+        const badgeContainer = document.getElementById("user-role-badge-container");
+        const nameDisplay = document.getElementById("user-profile-name");
+        const avatarBox = document.getElementById("user-avatar-box");
+        const profileCard = document.getElementById("main-profile-card");
+        
+        if (userData) {
+            isUserPremium = checkPremiumExpiry(userData);
+            const role = userData.role ? userData.role.toLowerCase() : 'reader';
+            isUserArtist = role === 'artist';
+            let displayName = userData.username || (userData.email ? userData.email.split('@')[0] : 'User');
+            if (isUserArtist) nameDisplay.innerHTML = `${displayName} <i class="fas fa-check-circle blue-mask" title="Verified Artist"></i>`;
+            else nameDisplay.innerText = displayName;
+            if (userData.avatarUrl) avatarBox.innerHTML = `<img src="${userData.avatarUrl}" alt="Avatar">`;
+            else avatarBox.innerHTML = `<i class="fas fa-user"></i>`;
+            
+            if (isUserPremium) {
+                profileCard.classList.add("premium-active");
+                badgeContainer.innerHTML = `<span class="role-badge role-premium"><i class="fas fa-crown"></i> Premium User</span>`;
+                generateSparkles();
+            } else {
+                profileCard.classList.remove("premium-active");
+                if (isUserArtist) badgeContainer.innerHTML = `<span class="role-badge role-artist"><i class="fas fa-palette"></i> Artist / Creator</span>`;
+                else badgeContainer.innerHTML = `<span class="role-badge role-reader"><i class="fas fa-book"></i> သာမန်စာဖတ်သူ</span>`;
+                const activeAudioTrack = localStorage.getItem("bk_music_track") || "bktext1.mp3";
+                if (isPremiumTrack(activeAudioTrack)) {
+                    localStorage.setItem("bk_music_track", "bktext1.mp3");
+                    document.getElementById("bg-audio").src = "bktext1.mp3";
+                    document.getElementById("bg-music-track").value = "bktext1.mp3";
+                    updateMusicSelectorUI("bktext1.mp3");
+                    if (localStorage.getItem("bk_music_on") === "true") playBackgroundMusic();
+                }
+            }
+            refreshThemePremiumLocks();
+            updateCoinUI();
+            applyFilterAndSearch();
+        }
+    });
+}
+
+function triggerAvatarSelection() { document.getElementById("avatar-input").click(); }
+
+function handleAvatarUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    if (file.size > 3000000) return alert("ပုံအရွယ်အစား 3MB ထက်နည်းရပါမည်။");
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const uid = auth.currentUser.uid;
+        database.ref('users/' + uid).update({ avatarUrl: e.target.result })
+            .then(() => alert("Profile ပုံ ပြောင်းလဲခြင်း အောင်မြင်ပါသည်။"))
+            .catch(err => alert("အမှားအယွင်းရှိခဲ့ပါသည်: " + err.message));
+    };
+    reader.readAsDataURL(file);
+}
+
+function handleNameEdit() {
+    const currentName = document.getElementById("user-profile-name").innerText;
+    const newName = prompt("သင့်အမည်သစ်ကို ရိုက်ထည့်ပါ -", currentName);
+    if (newName && newName.trim() !== "") {
+        database.ref('users/' + auth.currentUser.uid).update({ username: newName.trim() })
+            .catch(err => alert("အမည်ပြောင်းလဲ၍ မရပါ- " + err.message));
+    }
+}
+
+// ============================================================
+// SUBSCRIPTION MODAL
+// ============================================================
+function openSubscriptionModal(targetRole) {
+    activeTargetModal = targetRole;
+    const overlay = document.getElementById("subscription-modal");
+    const icon = document.getElementById("modal-icon");
+    const title = document.getElementById("modal-title");
+    const desc = document.getElementById("modal-desc");
+    const btnText = document.getElementById("modal-btn-text");
+    const actionBtn = document.getElementById("modal-action-btn");
+    
+    if (targetRole === 'premium') {
+        icon.innerText = "👑"; icon.style.color = "#fbbf24";
+        title.innerText = "Premium အဖွဲ့ဝင်ဝယ်ယူရန်";
+        desc.innerText = "မိတ်ဆွေ Premium ၁လစာဝယ်ယူလျင် ၅,၀၀၀ကျပ်၊ ၆လစာဝယ်ယူလျင် ၃၀,၀၀၀ကျပ်၊ ၁နှစ်စာဝယ်လျင်၊ ၅၅,၀၀၀ကျပ် ကျသင့်မှာဖြစ်ပြီး Premium ဝယ်ယူခြင်းအားဖြင့် Anime series story နဲ့ အောင်မြင်ရေးစာပေများကိုစိတ်ကြိုက်ဖက်ရှုနိုင်မှာပဲဖြစ်ပါတယ်။ နောက်ထက်အထူးအကျိုးခံစားခွင့်အနေနဲ့ကတော့ တစ်လတစ်ကြိမ် ၁သောင်းကျပ်မှ ၃သောင်းကျပ်အထိကိုလဲကံစမ်းခွင့်ရနေအုံးမှာဖြစ်လို့ Premium members အခုပဲဝင်လိုက်ပါနော်။";
+        btnText.innerText = "Premium members ဝင်ရန်";
+        actionBtn.style.background = "linear-gradient(135deg, #fbbf24, #f59e0b)";
+    } else if (targetRole === 'artist') {
+        icon.innerText = "🎨"; icon.style.color = "#ec4899";
+        title.innerText = "Artist အကောင့်ဖွင့်ရန်";
+        desc.innerText = "မိတ်ဆွေက စာရေးရတာ၊စာဖက်ရတာဝါသနာပါတဲ့သူဆိုရင်တော့ BK Text ရဲ့ Artist members အကောင့် ဖွင့်ကို ဖွင့်သင့်ပါတယ်။ Artist members အကောင့်ဖွင့်ခြင်းအားဖြင့် မိတ်ဆွေက BK Text ရဲ့စာရေးဆရာတစ်ယောက်ဖြစ်လာနိုင်ပါတယ်။\n\nဒါဆို Artists members ဝင်ရင်ဘယ်လောက်ကုန်မှာလဲ? တစ်နှစ်လုံးစိတ်ကြိုက်ရေးကိုမှ မြန်မာငွေကျပ် ၈၉,၀၀၀ကျပ်တိတိနဲ့ဝယ်ယူနိုင်ပါပြီ။";
+        btnText.innerText = "Artists members ဝင်ရန်";
+        actionBtn.style.background = "linear-gradient(135deg, #ec4899, #8b5cf6)";
+    }
+    overlay.style.display = "flex";
+    document.querySelector(".modal-scroll-area").scrollTop = 0;
+}
+
+function closeSubscriptionModal() { document.getElementById("subscription-modal").style.display = "none"; }
+function redirectToTelegram() { window.open("https://t.me/mrpz2025", "_blank"); closeSubscriptionModal(); }
+
+// ============================================================
+// STORIES
+// ============================================================
+function listenToStories() {
+    if (storiesListener) storiesListener.off();
+    storiesListener = database.ref('stories').on('value', (snapshot) => {
+        storiesData = [];
+        snapshot.forEach((childSnapshot) => {
+            const story = childSnapshot.val();
+            if (!story.id) story.id = childSnapshot.key;
+            storiesData.unshift(story);
+        });
+        applyFilterAndSearch();
+    });
+}
+
+function switchAuthMode(mode) {
+    currentAuthMode = mode;
+    document.getElementById("tab-login").classList.toggle("active", mode === 'login');
+    document.getElementById("tab-register").classList.toggle("active", mode === 'register');
+    document.getElementById("auth-submit-text").innerText = mode === 'login' ? 'လော့ဂ်အင်ဝင်မည်' : 'အကောင့်အသစ်ဖွင့်မည်';
+}
+
+function handleAuthSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById("auth-email").value;
+    const password = document.getElementById("auth-password").value;
+    if (currentAuthMode === 'login') {
+        auth.signInWithEmailAndPassword(email, password)
+            .catch(error => alert("Login မအောင်မြင်ပါ- " + error.message));
+    } else {
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((result) => {
+                database.ref('users/' + result.user.uid).set({
+                    email: email, username: email.split('@')[0],
+                    isPremium: false, role: 'reader',
+                    coinData: { totalCoins: 0, claimed: {} }
+                });
+                alert("အကောင့်ဖွင့်ခြင်း အောင်မြင်ပါသည်။");
+            })
+            .catch(error => alert("အကောင့်ဖွင့်မရပါ- " + error.message));
+    }
+}
+
+// ============================================================
+// GOOGLE LOGIN
+// ============================================================
+function loginWithGoogle() {
+    const btn = document.getElementById('google-login-btn');
+    const originalHTML = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    
+    auth.signInWithPopup(provider)
+        .then((result) => {
+            return database.ref('users/' + result.user.uid).once('value').then((snapshot) => {
+                if (!snapshot.exists()) {
+                    return database.ref('users/' + result.user.uid).set({
+                        email: result.user.email,
+                        username: result.user.displayName || result.user.email.split('@')[0],
+                        isPremium: false, role: 'reader',
+                        coinData: { totalCoins: 0, claimed: {} }
+                    });
+                }
+            });
+        })
+        .then(() => {
+            btn.disabled = false;
+            btn.innerHTML = originalHTML;
+        })
+        .catch((error) => {
+            console.error("Google login error:", error);
+            if (error.code === 'auth/popup-closed-by-user' || 
+                error.code === 'auth/cancelled-popup-request') {
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+                return;
+            }
+            auth.signInWithRedirect(provider).catch(err => {
+                alert("Google ဖြင့် ဝင်ရောက်၍ မရပါ။\nError: " + err.code);
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+            });
+        });
+}
+
+// ============================================================
+// FACEBOOK LOGIN
+// ============================================================
+function loginWithFacebook() {
+    const btn = document.getElementById('facebook-login-btn');
+    const originalHTML = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    
+    const provider = new firebase.auth.FacebookAuthProvider();
+    provider.setCustomParameters({ display: 'popup' });
+    
+    auth.signInWithPopup(provider)
+        .then((result) => {
+            return database.ref('users/' + result.user.uid).once('value').then((snapshot) => {
+                if (!snapshot.exists()) {
+                    return database.ref('users/' + result.user.uid).set({
+                        email: result.user.email || '',
+                        username: result.user.displayName || 'FB User',
+                        isPremium: false, role: 'reader',
+                        coinData: { totalCoins: 0, claimed: {} }
+                    });
+                }
+            });
+        })
+        .then(() => {
+            btn.disabled = false;
+            btn.innerHTML = originalHTML;
+        })
+        .catch((error) => {
+            console.error("Facebook login error:", error);
+            if (error.code === 'auth/popup-closed-by-user' || 
+                error.code === 'auth/cancelled-popup-request') {
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+                return;
+            }
+            if (error.code === 'auth/operation-not-allowed') {
+                alert("Facebook Login ကို Firebase Console မှာ Enable လုပ်ရန် လိုအပ်ပါသည်။");
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+                return;
+            }
+            auth.signInWithRedirect(provider).catch(err => {
+                alert("Facebook ဖြင့် ဝင်ရောက်၍ မရပါ။\nError: " + err.code);
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+            });
+        });
+}
+
+function handleLogout() {
+    if (confirm("အကောင့်ထဲမှ ထွက်ချင်ပါသလား?")) {
+        saveSessionProgress();
+        auth.signOut();
+    }
+}
+
+// ============================================================
+// FEED RENDER
+// ============================================================
+function renderStories(data) {
+    const feed = document.getElementById("stories-feed");
+    if (currentPageLimit === 10) feed.innerHTML = "";
+    if (data.length === 0) {
+        feed.className = "main-feed";
+        feed.innerHTML = `<p style="text-align:center; color:var(--text-muted); padding:20px;">ဇာတ်လမ်းများမရှိသေးပါ...</p>`;
+        return;
+    }
+    const checkCat = currentCategory.toLowerCase();
+    const paginatedData = data.slice(0, currentPageLimit);
+    if (isAnimeCategory(checkCat) || checkCat === 'ဝတ္ထု') {
+        feed.classList.add("grid-view");
+        const unique = [];
+        paginatedData.forEach(story => {
+            if (!unique.some(a => a.title === story.title)) unique.push(story);
+        });
+        feed.innerHTML = "";
+        unique.forEach(story => createCardElement(feed, story, true));
+    } else {
+        feed.classList.remove("grid-view");
+        feed.innerHTML = "";
+        paginatedData.forEach(story => createCardElement(feed, story, false));
+    }
+}
+
+function createCardElement(feed, story, isGroupedView) {
+    const isBookmarked = bookmarks.includes(story.id);
+    const optimizedImgUrl = (story.image_url && story.image_url.trim() !== "")
+        ? `https://images.weserv.nl/?url=${encodeURIComponent(story.image_url.trim())}&w=400&output=webp` : '';
+    const hasImg = optimizedImgUrl ? `src="${optimizedImgUrl}" loading="lazy" decoding="async" referrerpolicy="no-referrer" style="display:block;"` : '';
+    
+    const card = document.createElement("div");
+    card.className = "story-card";
+    const clickAction = isGroupedView ? `openAnimeEpisodes('${story.title.replace(/'/g, "\\'")}')` : `openReader('${story.id}')`;
+    const premiumLabel = isPremiumContent(story) ? `<span class="premium-badge"><i class="fas fa-crown"></i> Premium</span>` : '';
+    
+    const hasAudioTrack = (story.audioUrl && story.audioUrl.trim() !== "" && story.audioUrl.trim().toLowerCase() !== "none");
+    let audioLabel = '';
+    if (hasAudioTrack) {
+        audioLabel = isUserPremium
+            ? `<span class="audio-badge"><i class="fas fa-headphones"></i> Audio</span>`
+            : `<span class="audio-badge locked"><i class="fas fa-lock"></i> Audio Premium</span>`;
+    }
+    
+    const externalHasLink = hasExternalBloggerLink(story);
+    const externalBadge = (externalHasLink && !isUserPremium)
+        ? `<span class="story-tag" style="margin-left:5px; background:rgba(100,116,139,0.15); color:var(--text-muted);"><i class="fas fa-arrow-up-right-from-square"></i> ပြင်ပလင့်ခ်</span>` : '';
+    
+    card.innerHTML = `
+        <div onclick="${clickAction}">
+            <img class="story-img" ${hasImg}>
+            <span class="story-tag"># ${story.category || 'General'}</span> ${premiumLabel} ${audioLabel} ${externalBadge}
+            <div class="story-title">${story.title}</div>
+            <div class="story-snippet">${story.snippet || 'ဖတ်ရှုရန် နှိပ်ပါ...'}</div>
+        </div>
+        <div class="story-footer">
+            <span><i class="far fa-calendar"></i> ${story.date || ''}</span>
+            <button class="bookmark-btn ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark('${story.id}', this); event.stopPropagation();">
+                <i class="${isBookmarked ? 'fas' : 'far'} fa-bookmark"></i>
+            </button>
+        </div>
+    `;
+    feed.appendChild(card);
+}
+
+function filterCategory(category, element) {
+    currentCategory = category;
+    document.querySelectorAll(".category-btn").forEach(btn => btn.classList.remove("active"));
+    element.classList.add("active");
+    currentPageLimit = 10;
+    applyFilterAndSearch();
+}
+
+function handleSearch() { currentPageLimit = 10; applyFilterAndSearch(); }
+
+function applyFilterAndSearch() {
+    const q = document.getElementById("search-input").value.toLowerCase();
+    let filtered = storiesData;
+    if (currentView === 'saved') filtered = filtered.filter(s => bookmarks.includes(s.id));
+    if (currentCategory !== 'all') {
+        filtered = filtered.filter(s => {
+            if (!s.category) return false;
+            const cat = s.category.toLowerCase();
+            const sel = currentCategory.toLowerCase();
+            if (sel === 'ဝတ္ထု') return cat === 'ဝတ္ထု' || isAnimeCategory(cat);
+            if (sel === 'anime series') return isAnimeCategory(cat);
+            return cat === sel;
+        });
+    }
+    if (q.trim() !== "") {
+        filtered = filtered.filter(s => s.title.toLowerCase().includes(q) || (s.snippet && s.snippet.toLowerCase().includes(q)));
+    }
+    filteredStoriesCache = filtered;
+    renderStories(filtered);
+}
+
+function handleWindowInfiniteScroll() {
+    if (currentView !== 'home') return;
+    const loaderNode = document.getElementById("scroll-loader");
+    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 60) {
+        if (currentPageLimit < filteredStoriesCache.length) {
+            loaderNode.style.display = "block";
+            setTimeout(() => {
+                currentPageLimit += 10;
+                renderStories(filteredStoriesCache);
+                loaderNode.style.display = "none";
+            }, 400);
+        }
+    }
+}
+
+// ============================================================
+// NAV
+// ============================================================
+function switchNav(view) {
+    currentView = view;
+    document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
+    document.getElementById("home-view").style.display = "none";
+    document.getElementById("profile-view").style.display = "none";
+    const coinView = document.getElementById("coin-view");
+    if (coinView) coinView.style.display = "none";
+    const downloadView = document.getElementById("download-view");
+    if (downloadView) downloadView.style.display = "none";
+    currentPageLimit = 10;
+    
+    if (view === 'home') {
+        document.getElementById("nav-home").classList.add("active");
+        document.getElementById("home-view").style.display = "block";
+        listenToDailyNote();
+        listenToAdsImages();
+    } else if (view === 'saved') {
+        document.getElementById("nav-saved").classList.add("active");
+        document.getElementById("home-view").style.display = "block";
+        document.getElementById("quote-area").style.display = "none";
+        document.getElementById("ads-area").style.display = "none";
+        clearInterval(adsTimer);
+    } else if (view === 'download') {
+        document.getElementById("nav-download").classList.add("active");
+        if (downloadView) downloadView.style.display = "block";
+        renderDownloads();
+        clearInterval(adsTimer);
+    } else if (view === 'coin') {
+        document.getElementById("nav-coin").classList.add("active");
+        if (coinView) coinView.style.display = "block";
+        clearInterval(adsTimer);
+        updateMissionButtons();
+        updateMissionProgress();
+    } else if (view === 'profile') {
+        document.getElementById("nav-profile").classList.add("active");
+        document.getElementById("profile-view").style.display = "block";
+        clearInterval(adsTimer);
+        if (isUserPremium) generateSparkles();
+    }
+    if (view !== 'coin' && view !== 'download') applyFilterAndSearch();
+}
+
+function toggleBookmark(id, element) {
+    if (bookmarks.includes(id)) bookmarks = bookmarks.filter(b => b !== id);
+    else bookmarks.push(id);
+    localStorage.setItem('bk_bookmarks', JSON.stringify(bookmarks));
+    applyFilterAndSearch();
+}
+
+// ============================================================
+// HELPERS
+// ============================================================
+function buildReaderImageUrl(rawUrl) {
+    if (!rawUrl || rawUrl.trim() === "") return "";
+    return `https://images.weserv.nl/?url=${encodeURIComponent(rawUrl.trim())}&w=800&output=webp`;
+}
+function hasExternalBloggerLink(story) {
+    if (!story) return false;
+    const link = story.bloggerUrl;
+    if (!link) return false;
+    const t = String(link).trim();
+    return !(t === "" || t.toLowerCase() === "none");
+}
+function isPremiumContent(story) {
+    if (!story) return false;
+    if (story.isPremiumPost === true) return true;
+    const c = story.category ? story.category.toLowerCase() : '';
+    return c === 'anime series' || c === 'anime' || c === 'premium';
+}
+function isAnimeCategory(cat) { return cat === 'anime series' || cat === 'anime'; }
+
+// ============================================================
+// OPEN READER
+// ============================================================
+function openReader(id) {
+    const story = storiesData.find(s => String(s.id) === String(id));
+    if (!story) return;
+    
+    if (isPremiumContent(story) && !isUserPremium) {
+        openSubscriptionModal('premium');
+        return;
+    }
+    proceedOpenReader(story);
+}
+
+// ============================================================
+// AUDIO QUEUE BUILDER
+// ============================================================
+function extractPartNumber(text) {
+    if (!text) return 0;
+    let m = text.match(/part\s*(\d+)/i);
+    if (m) return parseInt(m[1]);
+    m = text.match(/အပိုင်း\s*(\d+)/);
+    if (m) return parseInt(m[1]);
+    m = text.match(/episode\s*(\d+)/i);
+    if (m) return parseInt(m[1]);
+    m = text.match(/(\d+)/);
+    if (m) return parseInt(m[1]);
+    return 0;
+}
+
+function buildAudioQueueForStory(story) {
+    currentAudioQueue = [];
+    currentAudioQueueIndex = 0;
+    
+    let siblings = storiesData.filter(s => 
+        s.title === story.title && 
+        s.audioUrl && s.audioUrl.trim() !== "" && 
+        s.audioUrl.trim().toLowerCase() !== "none"
+    );
+    
+    siblings = siblings.reverse();
+    
+    if (siblings.length === 0) return;
+    
+    if (siblings.length === 1) {
+        currentAudioQueue = [{
+            id: siblings[0].id,
+            audioUrl: siblings[0].audioUrl.trim(),
+            snippet: siblings[0].snippet || "Audio 1"
+        }];
+        currentAudioQueueIndex = 0;
+        return;
+    }
+    
+    siblings.sort((a, b) => {
+        const aNum = extractPartNumber(a.snippet) || extractPartNumber(a.title);
+        const bNum = extractPartNumber(b.snippet) || extractPartNumber(b.title);
+        return aNum - bNum;
+    });
+    
+    siblings.forEach(s => {
+        currentAudioQueue.push({
+            id: s.id,
+            audioUrl: s.audioUrl.trim(),
+            snippet: s.snippet || "Audio"
+        });
+    });
+    
+    currentAudioQueueIndex = currentAudioQueue.findIndex(q => String(q.id) === String(story.id));
+    if (currentAudioQueueIndex < 0) currentAudioQueueIndex = 0;
+}
+
+function proceedOpenReader(story) {
+    if (hasExternalBloggerLink(story) && !isUserPremium) {
+        window.open(story.bloggerUrl.trim(), '_blank');
+        return;
+    }
+    
+    currentReaderStory = story;
+    document.getElementById("reader-header-title").innerText = story.title;
+    
+    const readerImgUrl = buildReaderImageUrl(story.image_url);
+    const imgHtml = readerImgUrl
+        ? `<img src="${readerImgUrl}" referrerpolicy="no-referrer" loading="lazy" onerror="this.style.display='none'">` : '';
+    
+    const subTitle = story.snippet ? `<h4>${story.snippet}</h4>` : '';
+    
+    const hasAudio = story.audioUrl && story.audioUrl.trim() !== "" && story.audioUrl.trim().toLowerCase() !== "none";
+    let audioHtml = '';
+    
+    if (hasAudio) {
+        if (!isUserPremium) {
+            audioHtml = `
+            <div class="post-audio-player locked">
+                <div class="audio-player-header"><i class="fas fa-crown"></i><span>Audio နားဆင်ရန် Premium လိုအပ်ပါသည်</span></div>
+                <div class="audio-player-controls">
+                    <button class="audio-play-btn locked" onclick="openSubscriptionModal('premium')"><i class="fas fa-lock"></i></button>
+                    <div class="audio-progress-container">
+                        <div style="font-size: 12px; color: #b45309; font-weight: 600; padding: 8px 0;">👑 Premium member များသာ Audio နားဆင်နိုင်ပါသည်။</div>
+                    </div>
+                </div>
+            </div>`;
+        } else {
+            buildAudioQueueForStory(story);
+            let queueIndicator = '';
+            if (currentAudioQueue.length > 1) {
+                queueIndicator = `<div class="audio-queue-indicator" style="font-size: 11px; color: var(--text-muted); margin-top: 4px;"><i class="fas fa-list-ol"></i> Auto-Play: Part ${currentAudioQueueIndex + 1} / ${currentAudioQueue.length}</div>`;
+            }
+            audioHtml = `
+            <div class="post-audio-player">
+                <div class="audio-player-header"><i class="fas fa-headphones" style="font-size: 16px;"></i><span>အသံဖြင့် နားဆင်ရန်</span></div>
+                <div class="audio-player-controls">
+                    <button class="audio-play-btn" id="post-audio-play-btn" onclick="togglePostAudioPlay('${story.audioUrl.trim()}')"><i class="fas fa-play" id="post-audio-icon"></i></button>
+                    <div class="audio-progress-container">
+                        <input type="range" id="post-audio-slider" class="audio-slider" value="0" min="0" max="100" oninput="seekPostAudio(this.value)">
+                        <div class="audio-time-row"><span id="post-audio-current">00:00</span><span id="post-audio-duration">00:00</span></div>
+                    </div>
+                    <button class="audio-speed-btn" id="post-audio-speed-btn" onclick="changePostAudioSpeed()">1.0x</button>
+                </div>
+                ${queueIndicator}
+            </div>`;
+        }
+    }
+    
+    const content = story.content || '';
+    const midPoint = Math.floor(content.length / 2);
+    let firstHalf = content.substring(0, midPoint);
+    let secondHalf = content.substring(midPoint);
+    const lastBreak1 = firstHalf.lastIndexOf('\n');
+    if (lastBreak1 > midPoint * 0.5) {
+        firstHalf = content.substring(0, lastBreak1);
+        secondHalf = content.substring(lastBreak1);
+    }
+    
+    const inlineAdHtml = buildReaderInlineAd();
+    
+    document.getElementById("reader-body").innerHTML = `
+        ${imgHtml}
+        <h2>${story.title}</h2>
+        ${subTitle}
+        <span class="story-tag"># ${story.category || 'General'}</span>
+        ${audioHtml}
+        <hr style="border:0; border-top:1px solid var(--border-color); margin:15px 0;">
+        <p>${firstHalf}</p>
+        ${inlineAdHtml}
+        <p>${secondHalf}</p>
+    `;
+    
+    document.getElementById("reader-view").style.display = "flex";
+    document.body.style.overflow = "hidden";
+    pushNavState('reader');
+    
+    if (hasAudio && isUserPremium) {
+        initPostAudioEvents();
+    }
+}
+
+function initPostAudioEvents() {
+    if (!postAudio) return;
+    
+    postAudio.onloadedmetadata = null;
+    postAudio.ontimeupdate = null;
+    postAudio.onended = null;
+    postAudio.onerror = null;
+    
+    postAudio.onloadedmetadata = function() {
+        const dur = document.getElementById("post-audio-duration");
+        if (dur) dur.innerText = formatAudioTime(postAudio.duration);
+    };
+    
+    postAudio.ontimeupdate = function() {
+        const slider = document.getElementById("post-audio-slider");
+        const cur = document.getElementById("post-audio-current");
+        if (slider && !isNaN(postAudio.duration) && postAudio.duration > 0) {
+            slider.value = (postAudio.currentTime / postAudio.duration) * 100;
+        }
+        if (cur) cur.innerText = formatAudioTime(postAudio.currentTime);
+    };
+    
+    postAudio.onerror = function() {
+        console.log("Audio error, trying next...");
+        if (currentAudioQueue.length > 1 && currentAudioQueueIndex < currentAudioQueue.length - 1) {
+            currentAudioQueueIndex++;
+            playNextAudioInQueue();
+        }
+    };
+    
+    postAudio.onended = function() {
+        console.log("Audio ended. Queue length:", currentAudioQueue.length, "Index:", currentAudioQueueIndex);
+        const icon = document.getElementById("post-audio-icon");
+        if (icon) icon.className = "fas fa-play";
+        
+        if (currentAudioQueue.length > 1 && currentAudioQueueIndex < currentAudioQueue.length - 1) {
+            currentAudioQueueIndex++;
+            playNextAudioInQueue();
+            return;
+        }
+        if (wasBgMusicPlayingBeforeAudio) playBackgroundMusic();
+    };
+}
+
+function playNextAudioInQueue() {
+    const next = currentAudioQueue[currentAudioQueueIndex];
+    if (!next) return;
+    
+    console.log("Auto-playing next:", next.snippet);
+    
+    const subTitleEl = document.querySelector("#reader-body h4");
+    if (subTitleEl) subTitleEl.innerText = next.snippet;
+    
+    const queueEl = document.querySelector("#reader-body .audio-queue-indicator");
+    if (queueEl) queueEl.innerHTML = `<i class="fas fa-list-ol"></i> Auto-Play: Part ${currentAudioQueueIndex + 1} / ${currentAudioQueue.length}`;
+    
+    const playBtn = document.getElementById("post-audio-play-btn");
+    if (playBtn) playBtn.setAttribute("onclick", `togglePostAudioPlay('${next.audioUrl}')`);
+    
+    const icon = document.getElementById("post-audio-icon");
+    
+    postAudio.src = next.audioUrl;
+    postAudio.load();
+    postAudio.play().then(() => {
+        if (icon) icon.className = "fas fa-pause";
+        console.log("Auto-next play SUCCESS");
+    }).catch(err => {
+        console.log("Auto-next play failed:", err);
+    });
+}
+
+function togglePostAudioPlay(audioUrl) {
+    if (!postAudio) return;
+    const icon = document.getElementById("post-audio-icon");
+    if (postAudio.src !== audioUrl && !postAudio.src.endsWith(audioUrl)) {
+        postAudio.src = audioUrl;
+        postAudio.load();
+    }
+    if (postAudio.paused) {
+        const bgAudio = document.getElementById("bg-audio");
+        if (bgAudio && !bgAudio.paused) {
+            wasBgMusicPlayingBeforeAudio = true;
+            stopBackgroundMusic();
+        }
+        postAudio.play().then(() => { if (icon) icon.className = "fas fa-pause"; })
+            .catch(err => alert("Audio ဖိုင် ဖွင့်၍ မရပါ။"));
+    } else {
+        postAudio.pause();
+        if (icon) icon.className = "fas fa-play";
+    }
+}
+
+function seekPostAudio(percent) {
+    if (!postAudio || isNaN(postAudio.duration)) return;
+    postAudio.currentTime = (percent / 100) * postAudio.duration;
+}
+
+function changePostAudioSpeed() {
+    if (!postAudio) return;
+    const speeds = [1.0, 1.25, 1.5, 2.0];
+    let cur = postAudio.playbackRate;
+    let next = (speeds.indexOf(cur) + 1) % speeds.length;
+    let newSpeed = speeds[next];
+    postAudio.playbackRate = newSpeed;
+    const btn = document.getElementById("post-audio-speed-btn");
+    if (btn) btn.innerText = newSpeed.toFixed(1) + "x";
+}
+
+function stopPostAudio() {
+    if (postAudio) {
+        postAudio.pause();
+        postAudio.currentTime = 0;
+    }
+    currentAudioQueue = [];
+    currentAudioQueueIndex = 0;
+}
+
+function formatAudioTime(s) {
+    if (isNaN(s)) return "00:00";
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return `${m < 10 ? '0' : ''}${m}:${sec < 10 ? '0' : ''}${sec}`;
+}
+
+function closeReader() {
+    stopPostAudio();
+    if (wasBgMusicPlayingBeforeAudio) {
+        playBackgroundMusic();
+        wasBgMusicPlayingBeforeAudio = false;
+    }
+    const checkCat = currentCategory.toLowerCase();
+    const isInsideEpisode = document.getElementById("reader-body").querySelector('.chapter-list-container') === null;
+    if ((isAnimeCategory(checkCat) || checkCat === 'ဝတ္ထု') && isInsideEpisode) {
+        const title = document.getElementById("reader-header-title").innerText;
+        const hasGroup = storiesData.some(s => s.title === title);
+        if (hasGroup) { openAnimeEpisodes(title); return; }
+    }
+    document.getElementById("reader-view").style.display = "none";
+    document.body.style.overflow = "auto";
+    currentReaderStory = null;
+    document.getElementById("reader-download-btn").style.display = "block";
+}
+
+function openAnimeEpisodes(animeTitle) {
+    const episodes = storiesData.filter(s => s.title === animeTitle);
+    if (episodes.length > 0) {
+        if (isPremiumContent(episodes[0]) && !isUserPremium) {
+            openSubscriptionModal('premium');
+            return;
+        }
+    }
+    document.getElementById("reader-header-title").innerText = animeTitle;
+    let epListHtml = `<div class="chapter-list-container"><h3>Episodes / Chapters</h3><div style="margin-top:10px;">`;
+    episodes.forEach(ep => {
+        epListHtml += `<div class="chapter-item" onclick="openReader('${ep.id}')"><span>${ep.snippet || 'Episode / Section'}</span><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i></div>`;
+    });
+    epListHtml += `</div></div>`;
+    const mainImgUrl = episodes[0] && episodes[0].image_url ? buildReaderImageUrl(episodes[0].image_url) : '';
+    const mainImg = mainImgUrl ? `<img src="${mainImgUrl}" referrerpolicy="no-referrer" loading="lazy" style="width:100%; border-radius:10px; margin-bottom:15px;">` : '';
+    document.getElementById("reader-body").innerHTML = `${mainImg}<h2>${animeTitle}</h2><span class="story-tag"># Anime Series</span>${epListHtml}`;
+    document.getElementById("reader-view").style.display = "flex";
+    document.body.style.overflow = "hidden";
+    document.getElementById("reader-download-btn").style.display = "none";
+}
+
+// ============================================================
+// DOWNLOAD
+// ============================================================
+function downloadCurrentStory() {
+    if (!currentReaderStory) return;
+    const story = currentReaderStory;
+    const existing = downloads.find(d => String(d.id) === String(story.id));
+    if (existing) { alert("ဒီစာကို ဒေါင်းလုဒ်ထားပြီးသားဖြစ်ပါသည်။"); return; }
+    
+    const item = {
+        id: story.id,
+        title: story.title || 'Untitled',
+        snippet: story.snippet || '',
+        content: story.content || '',
+        image_url: story.image_url || '',
+        audioUrl: (story.audioUrl && story.audioUrl.trim() !== "" && story.audioUrl.trim().toLowerCase() !== "none") ? story.audioUrl.trim() : '',
+        category: story.category || '',
+        downloadedAt: Date.now()
+    };
+    downloads.push(item);
+    localStorage.setItem('bk_downloads', JSON.stringify(downloads));
+    alert("✅ ဒေါင်းလုဒ်ပြီးပါပြီ!\nDownload tab မှာ offline ဖတ်နိုင်ပါပြီ။");
+}
+
+function renderDownloads() {
+    const list = document.getElementById("download-list");
+    if (!list) return;
+    if (downloads.length === 0) {
+        list.innerHTML = `<div class="download-empty"><i class="fas fa-inbox" style="font-size: 40px; opacity: 0.3; margin-bottom: 15px;"></i><p>ဒေါင်းလုဒ်ထားသော စာများ မရှိသေးပါ</p></div>`;
+        return;
+    }
+    list.innerHTML = '';
+    downloads.slice().reverse().forEach(d => {
+        const el = document.createElement('div');
+        el.className = 'download-item';
+        el.innerHTML = `
+            <div class="download-item-icon"><i class="fas fa-file-alt"></i></div>
+            <div class="download-item-info">
+                <div class="download-item-title">${d.title}</div>
+                <div class="download-item-meta">${d.category || 'General'} • ${new Date(d.downloadedAt).toLocaleDateString()}</div>
+            </div>
+            <div class="download-item-actions">
+                <button class="download-action-btn" onclick="openDownloaded('${d.id}')"><i class="fas fa-book-open"></i></button>
+                <button class="download-action-btn danger" onclick="deleteDownloaded('${d.id}')"><i class="fas fa-trash"></i></button>
+            </div>
+        `;
+        list.appendChild(el);
+    });
+}
+
+function openDownloaded(id) {
+    const item = downloads.find(d => String(d.id) === String(id));
+    if (!item) return;
+    currentReaderStory = null;
+    document.getElementById("reader-header-title").innerText = item.title;
+    
+    const imgUrl = buildReaderImageUrl(item.image_url);
+    const imgHtml = imgUrl ? `<img src="${imgUrl}" referrerpolicy="no-referrer" loading="lazy" onerror="this.style.display='none'">` : '';
+    
+    let audioHtml = '';
+    if (item.audioUrl && item.audioUrl.trim() !== "" && item.audioUrl.trim().toLowerCase() !== "none") {
+        audioHtml = `<div class="post-audio-player"><div class="audio-player-header"><i class="fas fa-headphones"></i><span>Offline Audio</span></div><audio controls style="width:100%;" src="${item.audioUrl}"></audio></div>`;
+    }
+    
+    document.getElementById("reader-body").innerHTML = `
+        ${imgHtml}
+        <h2>${item.title}</h2>
+        <h4>${item.snippet}</h4>
+        <span class="story-tag"># ${item.category || 'General'}</span>
+        <span class="story-tag" style="background: rgba(16,185,129,0.15); color: #10b981; margin-left: 5px;"><i class="fas fa-check"></i> Offline</span>
+        ${audioHtml}
+        <hr style="border:0; border-top:1px solid var(--border-color); margin:15px 0;">
+        <p>${item.content}</p>
+    `;
+    document.getElementById("reader-download-btn").style.display = "none";
+    document.getElementById("reader-view").style.display = "flex";
+    document.body.style.overflow = "hidden";
+    pushNavState('reader');
+}
+
+function deleteDownloaded(id) {
+    if (!confirm("ဒီဒေါင်းလုဒ်ကို ဖျက်မှာ သေချာပါသလား?")) return;
+    downloads = downloads.filter(d => String(d.id) !== String(id));
+    localStorage.setItem('bk_downloads', JSON.stringify(downloads));
+    renderDownloads();
+}
+
+// ============================================================
+// REPORT CHAT
+// ============================================================
+function openReportChat() {
+    if (!currentUserUid) return;
+    document.getElementById("report-chat-view").classList.add("active");
+    document.body.style.overflow = "hidden";
+    listenToChat();
+    pushNavState('chat');
+    setTimeout(() => {
+        const msgs = document.getElementById("chat-messages");
+        if (msgs) msgs.scrollTop = msgs.scrollHeight;
+    }, 200);
+}
+
+function closeReportChat() {
+    document.getElementById("report-chat-view").classList.remove("active");
+    document.body.style.overflow = "auto";
+    if (chatListener) { chatListener.off(); chatListener = null; }
+}
+
+function listenToChat() {
+    if (!currentUserUid) return;
+    if (chatListener) chatListener.off();
+    
+    const ref = database.ref('reports/' + currentUserUid + '/messages');
+    chatListener = ref.on('value', (snapshot) => {
+        const messagesEl = document.getElementById("chat-messages");
+        messagesEl.innerHTML = '';
+        if (!snapshot.exists()) {
+            messagesEl.innerHTML = `<div style="text-align:center; color: var(--text-muted); padding: 30px 20px; font-size: 13px;">
+                <i class="fas fa-comments" style="font-size: 40px; opacity: 0.3; display: block; margin-bottom: 10px;"></i>
+                BK Team ကို မက်ဆေ့ချ် စတင် ပို့နိုင်ပါပြီ။
+            </div>`;
+            return;
+        }
+        const msgs = [];
+        snapshot.forEach(child => msgs.push({ id: child.key, ...child.val() }));
+        msgs.sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+        
+        msgs.forEach(m => {
+            const bubble = document.createElement('div');
+            bubble.className = 'chat-bubble ' + (m.sender === 'user' ? 'user' : 'admin');
+            const time = m.timestamp ? new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+            bubble.innerHTML = `${m.text}<span class="chat-bubble-time">${time}</span>`;
+            messagesEl.appendChild(bubble);
+        });
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    });
+}
+
+function sendChatMessage() {
+    if (!currentUserUid) return;
+    const input = document.getElementById("chat-input");
+    const text = input.value.trim();
+    if (!text) return;
+    
+    const sendBtn = document.getElementById("chat-send-btn");
+    sendBtn.disabled = true;
+    
+    const ref = database.ref('reports/' + currentUserUid);
+    ref.child('messages').push({
+        sender: 'user',
+        text: text,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+    }).then(() => {
+        return ref.update({
+            lastMessage: text,
+            lastUpdated: firebase.database.ServerValue.TIMESTAMP,
+            email: auth.currentUser.email,
+            username: document.getElementById("user-profile-name").innerText
+        });
+    }).then(() => {
+        input.value = '';
+        sendBtn.disabled = false;
+    }).catch(err => {
+        alert("မက်ဆေ့ချ် ပို့၍ မရပါ- " + err.message);
+        sendBtn.disabled = false;
+    });
+}
+
+// ============================================================
+// READ UPDATE
+// ============================================================
+function listenToReadUpdates() {
+    if (updatesListener) updatesListener.off();
+    updatesListener = database.ref('read_updates').limitToLast(20).on('value', (snapshot) => {
+        const updates = [];
+        snapshot.forEach(child => updates.push({ id: child.key, ...child.val() }));
+        updates.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+        
+        const badge = document.getElementById("updates-badge");
+        const newest = updates[0];
+        if (newest && newest.timestamp > lastSeenUpdateTimestamp) {
+            badge.style.display = "inline-block";
+        } else {
+            badge.style.display = "none";
+        }
+        
+        window._cachedUpdates = updates;
+    });
+}
+
+function openReadUpdates() {
+    document.getElementById("updates-view").classList.add("active");
+    document.body.style.overflow = "hidden";
+    renderReadUpdates();
+    localStorage.setItem('bk_last_update', Date.now().toString());
+    const badge = document.getElementById("updates-badge");
+    if (badge) badge.style.display = "none";
+    pushNavState('updates');
+}
+
+function closeReadUpdates() {
+    document.getElementById("updates-view").classList.remove("active");
+    document.body.style.overflow = "auto";
+}
+
+function renderReadUpdates() {
+    const list = document.getElementById("updates-list");
+    const updates = window._cachedUpdates || [];
+    if (updates.length === 0) {
+        list.innerHTML = `<div style="text-align:center; color: var(--text-muted); padding: 40px 20px;">
+            <i class="fas fa-bell-slash" style="font-size: 40px; opacity: 0.3; display: block; margin-bottom: 15px;"></i>
+            Update မရှိသေးပါ
+        </div>`;
+        return;
+    }
+    list.innerHTML = '';
+    updates.forEach(u => {
+        const card = document.createElement('div');
+        card.className = 'update-card';
+        const date = u.timestamp ? new Date(u.timestamp).toLocaleDateString() : '';
+        card.innerHTML = `
+            <div class="update-card-header">
+                <div class="update-card-title"><i class="fas fa-bullhorn"></i> ${u.title || 'Update'}</div>
+                <div class="update-card-date">${date}</div>
+            </div>
+            <div class="update-card-content">${u.content || ''}</div>
+        `;
+        list.appendChild(card);
+    });
+}
+
+// ============================================================
+// THEME SWITCH
+// ============================================================
+function toggleThemeSwitch(element) {
+    if (element.checked) {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("bk_theme", "dark");
+        localStorage.setItem("bk_custom_theme", "dark");
+        document.querySelectorAll(".theme-swatch").forEach(sw => sw.classList.toggle("active", sw.getAttribute("data-theme-value") === "dark"));
+    } else {
+        document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem("bk_theme", "light");
+        localStorage.setItem("bk_custom_theme", "light");
+        document.querySelectorAll(".theme-swatch").forEach(sw => sw.classList.toggle("active", sw.getAttribute("data-theme-value") === "light"));
+    }
+}
+
+function checkSavedTheme() {
+    const saved = localStorage.getItem("bk_theme");
+    const switchBtn = document.getElementById("dark-mode-switch");
+    if (saved === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+        if (switchBtn) switchBtn.checked = true;
+    } else {
+        document.documentElement.setAttribute("data-theme", "light");
+        if (switchBtn) switchBtn.checked = false;
+    }
+}
+
+// ============================================================
+// SERVICE WORKER REGISTRATION + PWA INSTALL
+// ============================================================
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+                console.log('✅ Service Worker registered:', registration.scope);
+                
+                registration.addEventListener('updatefound', () => {
+                    const newWorker = registration.installing;
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            if (confirm('App အသစ် ရရှိနိုင်ပါပြီ! Update လုပ်မှာလား?')) {
+                                newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                window.location.reload();
+                            }
+                        }
+                    });
+                });
+            })
+            .catch((err) => {
+                console.log('❌ Service Worker registration failed:', err);
+            });
+    });
+}
+
+// PWA Install Prompt (Android/Desktop)
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    console.log('PWA install available');
+});
+
+// iOS Install Tip Detection
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+if (isIOS && !isStandalone) {
+    setTimeout(() => {
+        const installTip = document.getElementById('ios-install-tip');
+        if (installTip && !localStorage.getItem('bk_ios_tip_shown')) {
+            installTip.style.display = 'flex';
+        }
+    }, 5000);
+}
+
+// Handle app shortcuts (?view=coin, ?view=saved, ?view=download)
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const view = urlParams.get('view');
+    if (view && ['coin', 'saved', 'download', 'profile', 'home'].includes(view)) {
+        setTimeout(() => {
+            if (auth.currentUser) {
+                switchNav(view);
+            }
+        }, 2000);
+    }
+});
+</script>
+</body>
+</html>

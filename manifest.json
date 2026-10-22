@@ -1,0 +1,65 @@
+{
+  "name": "BK Text — ဝတ္ထုနှင့် အနုပညာ",
+  "short_name": "BK Text",
+  "description": "ဝတ္ထုနှင့် အနုပညာရပ်ဝန်း — ဖတ်ရှုရန်၊ နားဆင်ရန်၊ ရှာဖွေရန်",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
+  "lang": "my",
+  "dir": "ltr",
+  "categories": ["books", "education", "entertainment"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://i.ibb.co/chVdDPpM/Picsart-26-10-15-00-07-21-040.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.ibb.co/chVdDPpM/Picsart-26-10-15-00-07-21-040.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Free Coin",
+      "short_name": "Coins",
+      "description": "Coin ရယူရန်",
+      "url": "/?view=coin",
+      "icons": [{ "src": "https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Bookmarks",
+      "short_name": "Saved",
+      "description": "သိမ်းထားသော စာများ",
+      "url": "/?view=saved",
+      "icons": [{ "src": "https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Download",
+      "short_name": "Downloads",
+      "description": "ဒေါင်းလုဒ်ထားသော စာများ",
+      "url": "/?view=download",
+      "icons": [{ "src": "https://i.ibb.co/7dw6VF6K/Picsart-26-10-15-00-07-41-305.png", "sizes": "192x192" }]
+    }
+  ]
+}
