@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bktext.vercel.app/sitemap.xml
